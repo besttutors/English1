@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrammarIQ — English Master Exam 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap');
+
+/* ══ TOKENS ══════════════════════════════════════ */
+:root {
+  --ink:       #0d1117;
+  --ink2:      #161b22;
+  --ink3:      #1c2333;
+  --line:      #21262d;
+  --muted:     #8b949e;
+  --soft:      #c9d1d9;
+  --light:     #e6edf3;
+  --white:     #f0f6fc;
+
+  --teal:      #2dd4bf;
+  --teal-glow: rgba(45,212,191,.18);
+  --teal-dim:  rgba(45,212,191,.08);
+  --amber:     #fbbf24;
+  --amber-dim: rgba(251,191,36,.1);
+  --rose:      #f43f5e;
+  --rose-dim:  rgba(244,63,94,.1);
+  --violet:    #a78bfa;
+  --violet-dim:rgba(167,139,250,.1);
+  --emerald:   #34d399;
+  --emerald-dim:rgba(52,211,153,.1);
+  --sky:       #38bdf8;
+
+  --r-sm:  8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --shadow: 0 4px 24px rgba(0,0,0,.5);
+  --shadow-teal: 0 0 40px rgba(45,212,191,.12);
+}
+
+/* ══ RESET ═══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--ink);
+  color:var(--soft);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ══ NOISE TEXTURE ═══════════════════════════════ */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:128px;
+  pointer-events:none;
+  opacity:.6;
+}
+body::after{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 10%, rgba(45,212,191,.07) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 85%, rgba(167,139,250,.06) 0%, transparent 55%);
+  pointer-events:none;
+}
+
+/* ══ SCREENS ═════════════════════════════════════ */
+.screen{display:none;position:relative;z-index:1;}
+.screen.active{display:block;}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 0 — SPLASH / HOME
+══════════════════════════════════════════════════ */
+#homeScreen{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+#homeScreen.active{display:flex;}
+
+.home-card{
+  width:100%;max-width:700px;
+  background:var(--ink2);
+  border:1px solid var(--line);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  box-shadow:var(--shadow),var(--shadow-teal);
+  animation:fadeUp .6s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+
+.home-hero{
+  background:linear-gradient(135deg,#0d2a27 0%,#0f1923 60%,#150d2e 100%);
+  padding:3rem 2.5rem 2rem;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.home-hero::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(45,212,191,.15),transparent 70%);
+}
+.home-hero::after{
+  content:'GQ';
+  position:absolute;bottom:-20px;right:2rem;
+  font-family:'Fraunces',serif;font-size:9rem;font-weight:900;
+  color:rgba(45,212,191,.04);line-height:1;
+  pointer-events:none;letter-spacing:-.05em;
+}
+.tag-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(45,212,191,.12);
+  border:1px solid rgba(45,212,191,.25);
+  color:var(--teal);
+  font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.3rem 1rem;border-radius:999px;
+  margin-bottom:1.2rem;
+}
+.home-hero h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  font-weight:900;line-height:1.05;
+  color:var(--white);
+  margin-bottom:.6rem;
+}
+.home-hero h1 em{
+  font-style:italic;color:var(--teal);
+}
+.home-hero p{
+  color:var(--muted);font-size:.95rem;
+  max-width:480px;line-height:1.7;
+}
+
+.home-body{padding:2rem 2.5rem;}
+
+.stats-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.8rem;margin-bottom:2rem;
+}
+.stat-tile{
+  background:var(--ink3);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  padding:.9rem .8rem;
+  text-align:center;
+  transition:border-color .2s;
+}
+.stat-tile:hover{border-color:var(--teal);}
+.stat-tile .num{
+  font-family:'Fira Code',monospace;
+  font-size:1.4rem;font-weight:600;
+  color:var(--teal);line-height:1;
+  margin-bottom:.25rem;
+}
+.stat-tile .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+
+/* CONFIG SECTION */
+.config-section{margin-bottom:1.5rem;}
+.config-section h3{
+  font-size:.72rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:.8rem;font-weight:600;
+}
+.config-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.cfg-item label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:.35rem;font-weight:500;}
+.cfg-item select{
+  width:100%;
+  background:var(--ink3);color:var(--soft);
+  border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  padding:.65rem .9rem;
+  font-size:.88rem;font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b949e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right .8rem center;
+  padding-right:2.2rem;
+}
+.cfg-item select:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow);}
+
+.marking-box{
+  background:var(--ink3);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:1rem 1.2rem;
+  margin-bottom:1.5rem;
+}
+.marking-box h3{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem;font-weight:600;}
+.marking-rows{display:flex;gap:1rem;flex-wrap:wrap;}
+.mark-chip{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.83rem;
+}
+.mark-chip .dot{
+  width:8px;height:8px;border-radius:50%;
+}
+.mark-chip.pos .dot{background:var(--emerald);}
+.mark-chip.neg .dot{background:var(--rose);}
+.mark-chip.zero .dot{background:var(--muted);}
+.mark-chip.pos span:last-child{color:var(--emerald);font-weight:700;font-family:'Fira Code',monospace;}
+.mark-chip.neg span:last-child{color:var(--rose);font-weight:700;font-family:'Fira Code',monospace;}
+.mark-chip.zero span:last-child{color:var(--muted);font-weight:700;font-family:'Fira Code',monospace;}
+
+.start-btn{
+  width:100%;padding:1.1rem;
+  background:var(--teal);color:var(--ink);
+  font-weight:700;font-size:1rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  border:none;border-radius:var(--r-md);
+  cursor:pointer;
+  letter-spacing:.02em;
+  transition:all .2s;
+  position:relative;overflow:hidden;
+}
+.start-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);
+  transition:transform .4s;
+}
+.start-btn:hover{background:#25c4ac;transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,212,191,.35);}
+.start-btn:hover::after{transform:translateX(100%);}
+.start-btn:active{transform:none;}
+
+/* TOPIC PILLS */
+.topics-section{margin-top:1.5rem;}
+.topics-section h3{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;font-weight:600;}
+.topics-wrap{display:flex;flex-wrap:wrap;gap:.4rem;}
+.topic-pill{
+  font-size:.72rem;color:var(--muted);
+  background:var(--ink3);border:1px solid var(--line);
+  border-radius:999px;padding:.25rem .7rem;
+  transition:all .2s;cursor:default;
+}
+.topic-pill:hover{border-color:var(--teal);color:var(--teal);}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 1 — EXAM
+══════════════════════════════════════════════════ */
+#examScreen{min-height:100vh;display:none;flex-direction:column;}
+#examScreen.active{display:flex;}
+
+/* TOP NAV */
+.exam-nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(13,17,23,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  padding:0 1.5rem;
+  height:56px;
+  display:flex;align-items:center;gap:1rem;
+}
+.nav-logo{
+  font-family:'Fraunces',serif;
+  font-size:1.2rem;font-weight:900;
+  color:var(--teal);
+  letter-spacing:-.02em;
+  white-space:nowrap;
+  margin-right:.5rem;
+}
+.nav-divider{width:1px;height:24px;background:var(--line);}
+.nav-chips{display:flex;gap:.5rem;flex:1;}
+.nav-chip{
+  display:flex;align-items:center;gap:.35rem;
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  padding:.3rem .65rem;
+  font-size:.78rem;
+  white-space:nowrap;
+}
+.nc-label{color:var(--muted);}
+.nc-val{font-family:'Fira Code',monospace;font-weight:600;}
+.nc-val.teal{color:var(--teal);}
+.nc-val.green{color:var(--emerald);}
+.nc-val.red{color:var(--rose);}
+.nc-val.amber{color:var(--amber);}
+
+/* TIMER */
+.timer-pill{
+  display:flex;align-items:center;gap:.5rem;
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:.3rem .8rem;
+  margin-left:auto;
+}
+.timer-icon{font-size:.95rem;}
+#timerDisplay{
+  font-family:'Fira Code',monospace;
+  font-size:.95rem;font-weight:600;
+  color:var(--teal);min-width:52px;text-align:center;
+}
+#timerDisplay.warn{color:var(--amber);}
+#timerDisplay.danger{color:var(--rose);animation:pulse .6s infinite;}
+@keyframes pulse{50%{opacity:.25;}}
+
+/* LAYOUT */
+.exam-layout{display:flex;flex:1;min-height:0;}
+
+/* PALETTE SIDEBAR */
+.palette-sidebar{
+  width:240px;min-width:240px;
+  background:var(--ink2);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.ps-head{
+  padding:1rem;
+  border-bottom:1px solid var(--line);
+}
+.ps-title{
+  font-size:.72rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.1em;
+  font-weight:600;margin-bottom:.7rem;
+}
+.ps-legend{display:flex;flex-direction:column;gap:.35rem;}
+.leg{display:flex;align-items:center;gap:.5rem;font-size:.73rem;color:var(--muted);}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.ld-cur{background:var(--teal);}
+.ld-ans{background:var(--emerald);}
+.ld-skip{background:var(--amber);}
+.ld-unvisit{background:var(--ink3);border:1px solid var(--line);}
+
+.ps-grid-wrap{flex:1;overflow-y:auto;padding:1rem;}
+.ps-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:.35rem;
+}
+.pq{
+  aspect-ratio:1;border-radius:6px;
+  border:1px solid var(--line);
+  background:var(--ink3);
+  color:var(--muted);
+  font-size:.7rem;font-weight:700;
+  font-family:'Fira Code',monospace;
+  cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;
+}
+.pq:hover{border-color:var(--teal);color:var(--teal);}
+.pq.cur{background:var(--teal);border-color:var(--teal);color:var(--ink);}
+.pq.ans{background:rgba(52,211,153,.2);border-color:var(--emerald);color:var(--emerald);}
+.pq.skip{background:rgba(251,191,36,.15);border-color:var(--amber);color:var(--amber);}
+
+.ps-summary{
+  border-top:1px solid var(--line);
+  padding:1rem;display:flex;flex-direction:column;gap:.4rem;
+}
+.pss-row{
+  display:flex;justify-content:space-between;
+  font-size:.78rem;
+}
+.pss-row span:first-child{color:var(--muted);}
+.pss-row span:last-child{font-weight:700;font-family:'Fira Code',monospace;}
+
+/* QUESTION AREA */
+.question-area{
+  flex:1;overflow-y:auto;
+  padding:2rem 2.5rem;
+  display:flex;flex-direction:column;gap:1.5rem;
+}
+
+.q-meta{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+  flex-wrap:wrap;
+}
+.q-meta-left{display:flex;flex-direction:column;gap:.4rem;}
+.q-num{
+  font-family:'Fira Code',monospace;
+  font-size:.8rem;color:var(--muted);
+}
+.q-cat-tag{
+  font-size:.73rem;font-weight:600;
+  color:var(--teal);letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.q-badge{
+  font-size:.68rem;font-weight:700;
+  padding:.3rem .8rem;border-radius:999px;
+  letter-spacing:.08em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.qb-basic{background:rgba(52,211,153,.12);color:var(--emerald);border:1px solid rgba(52,211,153,.25);}
+.qb-intermediate{background:rgba(251,191,36,.12);color:var(--amber);border:1px solid rgba(251,191,36,.25);}
+.qb-advanced{background:rgba(244,63,94,.12);color:var(--rose);border:1px solid rgba(244,63,94,.25);}
+.qb-expert{background:rgba(167,139,250,.12);color:var(--violet);border:1px solid rgba(167,139,250,.25);}
+
+.q-card{
+  background:var(--ink2);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:1.8rem 2rem;
+}
+.q-text{
+  font-size:1.08rem;line-height:1.75;
+  color:var(--light);font-weight:400;
+}
+.q-text strong,.q-text b{color:var(--teal);}
+.q-text u{text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:3px;}
+.q-text em{font-style:italic;color:var(--amber);}
+
+.options-list{
+  display:flex;flex-direction:column;gap:.65rem;
+  margin-top:1.5rem;
+}
+.opt{
+  display:flex;align-items:flex-start;gap:.9rem;
+  background:var(--ink3);
+  border:1.5px solid var(--line);
+  border-radius:var(--r-md);
+  padding:1rem 1.1rem;
+  cursor:pointer;
+  transition:all .18s;
+  width:100%;text-align:left;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--soft);font-size:.93rem;line-height:1.5;
+}
+.opt:hover{
+  border-color:var(--teal);
+  background:var(--teal-dim);
+  transform:translateX(3px);
+}
+.opt.sel{
+  border-color:var(--teal);
+  background:var(--teal-dim);
+  color:var(--white);
+}
+.opt.sel .opt-key{
+  background:var(--teal);
+  border-color:var(--teal);
+  color:var(--ink);
+}
+.opt-key{
+  min-width:28px;height:28px;
+  border-radius:7px;
+  border:1.5px solid var(--line);
+  background:var(--ink2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;
+  font-family:'Fira Code',monospace;
+  color:var(--muted);
+  transition:all .18s;
+  flex-shrink:0;
+  margin-top:.1rem;
+}
+.opt-text{flex:1;}
+
+/* ACTIONS */
+.q-actions{
+  display:flex;gap:.7rem;flex-wrap:wrap;
+  align-items:center;
+}
+.btn{
+  padding:.7rem 1.3rem;
+  border-radius:var(--r-sm);
+  font-weight:600;font-size:.88rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer;border:none;
+  transition:all .15s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.btn-prev{background:var(--ink3);color:var(--muted);border:1px solid var(--line);}
+.btn-prev:hover:not(:disabled){border-color:var(--teal);color:var(--teal);}
+.btn-prev:disabled{opacity:.35;cursor:not-allowed;}
+.btn-skip{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2);}
+.btn-skip:hover{background:rgba(251,191,36,.2);}
+.btn-next{background:var(--teal);color:var(--ink);flex:1;justify-content:center;}
+.btn-next:hover{background:#25c4ac;box-shadow:0 4px 16px rgba(45,212,191,.3);}
+.btn-submit{background:linear-gradient(135deg,var(--rose),#cc2244);color:#fff;flex:1;justify-content:center;}
+.btn-submit:hover{opacity:.88;box-shadow:0 4px 16px rgba(244,63,94,.3);}
+
+/* PROGRESS STRIP */
+.progress-strip{
+  position:sticky;bottom:0;z-index:10;
+  background:rgba(13,17,23,.95);
+  border-top:1px solid var(--line);
+  padding:.7rem 2.5rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.prog-track{
+  flex:1;height:5px;background:var(--ink3);
+  border-radius:999px;overflow:hidden;
+}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--teal),var(--violet));
+  border-radius:999px;
+  transition:width .4s ease;
+}
+.prog-label{
+  font-size:.75rem;color:var(--muted);
+  font-family:'Fira Code',monospace;
+  white-space:nowrap;
+}
+
+/* ══════════════════════════════════════════════════
+   SCREEN 2 — RESULTS
+══════════════════════════════════════════════════ */
+#resultsScreen{
+  min-height:100vh;
+  padding:2rem 1rem;
+  display:none;justify-content:center;
+}
+#resultsScreen.active{display:flex;}
+
+.results-wrap{max-width:860px;width:100%;}
+
+.res-header{
+  text-align:center;
+  margin-bottom:2rem;
+  animation:fadeUp .5s ease both;
+}
+.res-header h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2rem,5vw,2.8rem);
+  font-weight:900;color:var(--white);
+  margin-bottom:.4rem;
+}
+.res-header p{color:var(--muted);font-size:.95rem;}
+
+/* SCORE HERO */
+.score-hero{
+  background:var(--ink2);
+  border:1px solid var(--line);
+  border-radius:var(--r-xl);
+  padding:2.5rem 2rem;
+  display:flex;align-items:center;gap:3rem;
+  margin-bottom:1.5rem;
+  flex-wrap:wrap;
+  animation:fadeUp .5s .1s ease both;
+}
+.score-ring-wrap{flex-shrink:0;}
+.score-ring{width:150px;height:150px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.sr-bg{fill:none;stroke:var(--ink3);stroke-width:10;}
+.sr-fill{
+  fill:none;stroke-width:10;stroke-linecap:round;
+  stroke-dasharray:408;stroke-dashoffset:408;
+  transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1);
+}
+.ring-inner{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.ri-score{
+  font-family:'Fira Code',monospace;
+  font-size:1.9rem;font-weight:600;
+  line-height:1;
+}
+.ri-total{font-size:.72rem;color:var(--muted);margin-top:.15rem;}
+.ri-grade{
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  margin-top:.3rem;
+}
+
+.score-details{flex:1;display:flex;flex-direction:column;gap:.8rem;}
+.sd-title{
+  font-family:'Fraunces',serif;
+  font-size:1.6rem;font-weight:700;
+  color:var(--white);line-height:1.2;
+}
+.sd-sub{color:var(--muted);font-size:.88rem;margin-bottom:.5rem;}
+.sd-stats{display:flex;flex-wrap:wrap;gap:.6rem;}
+.sd-chip{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--ink3);border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:.4rem .8rem;
+  font-size:.83rem;
+}
+.sd-chip .sc-val{font-family:'Fira Code',monospace;font-weight:600;}
+
+/* ANALYTICS GRID */
+.ana-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.8rem;margin-bottom:1.5rem;
+  animation:fadeUp .5s .2s ease both;
+}
+.ana-tile{
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:1.2rem;
+  text-align:center;
+}
+.ana-tile .at-val{
+  font-family:'Fira Code',monospace;
+  font-size:1.8rem;font-weight:600;line-height:1;
+  margin-bottom:.35rem;
+}
+.ana-tile .at-lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+
+/* CHARTS */
+.charts-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-bottom:1.5rem;
+  animation:fadeUp .5s .3s ease both;
+}
+.chart-card{
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:1.5rem;
+}
+.chart-card h3{
+  font-size:.72rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.1em;
+  font-weight:600;margin-bottom:1.1rem;
+}
+.bar-list{display:flex;flex-direction:column;gap:.55rem;}
+.bar-item{display:flex;align-items:center;gap:.6rem;}
+.bi-label{
+  width:110px;min-width:110px;
+  font-size:.73rem;color:var(--muted);
+  text-align:right;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;
+}
+.bi-track{
+  flex:1;height:18px;
+  background:var(--ink3);border-radius:999px;
+  overflow:hidden;
+}
+.bi-fill{
+  height:100%;border-radius:999px;
+  transition:width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.bi-val{
+  width:36px;font-size:.72rem;
+  font-family:'Fira Code',monospace;font-weight:600;
+  text-align:right;
+}
+
+/* REVIEW */
+.review-card{
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden;
+  margin-bottom:1.5rem;
+  animation:fadeUp .5s .4s ease both;
+}
+.review-card-head{
+  padding:1rem 1.5rem;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.review-card-head h3{
+  font-size:.72rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.1em;font-weight:600;
+}
+.review-filter{display:flex;gap:.4rem;}
+.rf-btn{
+  font-size:.7rem;padding:.25rem .7rem;
+  border-radius:999px;border:1px solid var(--line);
+  background:var(--ink3);color:var(--muted);
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
+  transition:all .15s;
+}
+.rf-btn.active,.rf-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+.review-tbl{width:100%;border-collapse:collapse;font-size:.8rem;}
+.review-tbl th{
+  padding:.6rem 1rem;
+  background:var(--ink3);color:var(--muted);
+  text-align:left;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.08em;
+  font-weight:600;
+}
+.review-tbl td{
+  padding:.75rem 1rem;
+  border-top:1px solid var(--line);
+  vertical-align:top;
+}
+.review-tbl tr:hover td{background:var(--ink3);}
+.rv-correct{color:var(--emerald);font-weight:600;}
+.rv-wrong{color:var(--rose);font-weight:600;}
+.rv-skip{color:var(--muted);}
+.rv-ans-correct{color:var(--emerald);font-size:.78rem;}
+.rv-ans-wrong{color:var(--rose);font-size:.78rem;}
+
+/* RESULT ACTIONS */
+.res-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp .5s .5s ease both;
+}
+.res-actions button{
+  flex:1;min-width:140px;
+  padding:1rem 1.5rem;
+  border-radius:var(--r-md);
+  font-weight:700;font-size:.95rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer;border:none;transition:all .2s;
+}
+.btn-retry{background:var(--teal);color:var(--ink);}
+.btn-retry:hover{background:#25c4ac;transform:translateY(-1px);}
+.btn-home2{background:var(--ink2);color:var(--soft);border:1px solid var(--line);}
+.btn-home2:hover{border-color:var(--teal);color:var(--teal);}
+
+/* MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;
+  padding:1rem;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--ink2);
+  border:1px solid var(--line);
+  border-radius:var(--r-xl);
+  padding:2.5rem 2rem;
+  max-width:420px;width:100%;
+  text-align:center;
+  box-shadow:var(--shadow);
+  animation:fadeUp .3s ease;
+}
+.modal-icon{font-size:3rem;margin-bottom:.8rem;}
+.modal-box h3{
+  font-family:'Fraunces',serif;
+  font-size:1.5rem;color:var(--white);
+  margin-bottom:.6rem;
+}
+.modal-box p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1.8rem;}
+.modal-btns{display:flex;gap:.8rem;}
+.modal-btns button{
+  flex:1;padding:.8rem;border-radius:var(--r-sm);
+  font-weight:600;font-size:.9rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer;border:none;transition:all .15s;
+}
+.m-cancel{background:var(--ink3);color:var(--soft);border:1px solid var(--line);}
+.m-cancel:hover{border-color:var(--teal);color:var(--teal);}
+.m-submit{background:var(--rose);color:#fff;}
+.m-submit:hover{opacity:.88;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink2);border:1px solid var(--teal);
+  color:var(--teal);border-radius:var(--r-sm);
+  padding:.7rem 1.4rem;font-size:.85rem;font-weight:600;
+  z-index:9999;opacity:0;
+  transition:all .3s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:999px;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .palette-sidebar{display:none;}
+  .question-area{padding:1.2rem;}
+  .progress-strip{padding:.6rem 1.2rem;}
+  .score-hero{gap:1.5rem;}
+  .ana-grid{grid-template-columns:repeat(2,1fr);}
+  .charts-row{grid-template-columns:1fr;}
+  .bi-label{width:80px;min-width:80px;}
+  .home-body{padding:1.5rem;}
+  .home-hero{padding:2rem 1.5rem 1.5rem;}
+  .stats-strip{grid-template-columns:repeat(2,1fr);}
+  .config-grid{grid-template-columns:1fr;}
+}
+.mob-palette-fab{
+  display:none;
+  position:fixed;bottom:5rem;right:1rem;z-index:300;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--teal);color:var(--ink);
+  border:none;font-size:1.1rem;cursor:pointer;
+  box-shadow:0 4px 16px rgba(45,212,191,.4);
+  align-items:center;justify-content:center;
+}
+@media(max-width:768px){.mob-palette-fab{display:flex;}}
+.mob-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.75);
+}
+.mob-overlay.open{display:block;}
+.mob-drawer{
+  position:fixed;left:0;top:0;bottom:0;z-index:401;
+  width:270px;
+  background:var(--ink2);
+  border-right:1px solid var(--line);
+  transform:translateX(-100%);
+  transition:transform .3s;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.mob-drawer.open{transform:translateX(0);}
+.mob-drawer .ps-head,.mob-drawer .ps-grid-wrap,.mob-drawer .ps-summary{all:unset;}
+.mob-drawer-inner{padding:1rem;overflow-y:auto;flex:1;}
+.mob-drawer-title{
+  font-size:.72rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.1em;
+  font-weight:600;padding:1rem;
+  border-bottom:1px solid var(--line);
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HOME SCREEN ══ -->
+<div id="homeScreen" class="screen active">
+  <div class="home-card">
+    <div class="home-hero">
+      <div class="tag-pill">📚 2026 Exam System · Offline Ready</div>
+      <h1>Grammar<em>IQ</em><br>Master Exam</h1>
+      <p>500 questions across 25 grammar topics — from Class 6 basics to competitive exam level. Every test is unique with randomised selection.</p>
+    </div>
+    <div class="home-body">
+      <div class="stats-strip">
+        <div class="stat-tile"><div class="num">500</div><div class="lbl">Questions</div></div>
+        <div class="stat-tile"><div class="num">25</div><div class="lbl">Topics</div></div>
+        <div class="stat-tile"><div class="num">20</div><div class="lbl">Per Test</div></div>
+        <div class="stat-tile"><div class="num">4</div><div class="lbl">Levels</div></div>
+      </div>
+
+      <div class="config-section">
+        <h3>Test Configuration</h3>
+        <div class="config-grid">
+          <div class="cfg-item">
+            <label>Difficulty Level</label>
+            <select id="diffSel">
+              <option value="all" selected>All Levels (Mixed)</option>
+              <option value="basic">Basic (Class 6–8)</option>
+              <option value="intermediate">Intermediate (Class 9–10)</option>
+              <option value="advanced">Advanced (Class 11–12)</option>
+              <option value="expert">Expert (Competitive)</option>
+            </select>
+          </div>
+          <div class="cfg-item">
+            <label>Time Limit</label>
+            <select id="timeSel">
+              <option value="1200">20 Minutes</option>
+              <option value="1800" selected>30 Minutes</option>
+              <option value="2400">40 Minutes</option>
+              <option value="3600">60 Minutes</option>
+            </select>
+          </div>
+          <div class="cfg-item">
+            <label>Topic Focus</label>
+            <select id="topicSel">
+              <option value="all" selected>All Topics</option>
+              <option value="Parts of Speech">Parts of Speech</option>
+              <option value="Tenses">Tenses</option>
+              <option value="Articles">Articles</option>
+              <option value="Prepositions">Prepositions</option>
+              <option value="Conjunctions">Conjunctions</option>
+              <option value="Active/Passive Voice">Active/Passive Voice</option>
+              <option value="Direct/Indirect Speech">Direct/Indirect Speech</option>
+              <option value="Conditionals">Conditionals</option>
+              <option value="Clauses">Clauses</option>
+              <option value="Modal Verbs">Modal Verbs</option>
+              <option value="Subject-Verb Agreement">Subject-Verb Agreement</option>
+              <option value="Vocabulary">Vocabulary</option>
+              <option value="Idioms & Phrases">Idioms & Phrases</option>
+              <option value="Phrasal Verbs">Phrasal Verbs</option>
+              <option value="Figures of Speech">Figures of Speech</option>
+              <option value="Punctuation">Punctuation</option>
+              <option value="Sentence Correction">Sentence Correction</option>
+              <option value="One Word Substitution">One Word Substitution</option>
+              <option value="Degrees of Comparison">Degrees of Comparison</option>
+              <option value="Gerund & Infinitive">Gerund & Infinitive</option>
+            </select>
+          </div>
+          <div class="cfg-item">
+            <label>Negative Marking</label>
+            <select id="negSel">
+              <option value="0.25" selected>Yes — ¼ Mark</option>
+              <option value="0.5">Yes — ½ Mark</option>
+              <option value="0">No Negative Marking</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="marking-box">
+        <h3>Marking Scheme</h3>
+        <div class="marking-rows">
+          <div class="mark-chip pos"><div class="dot"></div><span>Correct Answer</span><span>+1 Mark</span></div>
+          <div class="mark-chip neg"><div class="dot"></div><span>Wrong Answer</span><span id="negLabel">−¼ Mark</span></div>
+          <div class="mark-chip zero"><div class="dot"></div><span>Skipped</span><span>0 Mark</span></div>
+        </div>
+      </div>
+
+      <button class="start-btn" id="startBtn">🚀 Start Test</button>
+
+      <div class="topics-section">
+        <h3>Topics Covered</h3>
+        <div class="topics-wrap" id="topicsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EXAM SCREEN ══ -->
+<div id="examScreen" class="screen">
+  <nav class="exam-nav">
+    <div class="nav-logo">GrammarIQ</div>
+    <div class="nav-divider"></div>
+    <div class="nav-chips">
+      <div class="nav-chip"><span class="nc-label">Q</span><span class="nc-val teal" id="ncQ">1/20</span></div>
+      <div class="nav-chip"><span class="nc-label">Score</span><span class="nc-val amber" id="ncScore">0</span></div>
+      <div class="nav-chip"><span class="nc-label">✓</span><span class="nc-val green" id="ncCorrect">0</span></div>
+      <div class="nav-chip"><span class="nc-label">✗</span><span class="nc-val red" id="ncWrong">0</span></div>
+    </div>
+    <div class="timer-pill">
+      <span class="timer-icon">⏱</span>
+      <div id="timerDisplay">30:00</div>
+    </div>
+  </nav>
+
+  <div class="exam-layout">
+    <div class="palette-sidebar">
+      <div class="ps-head">
+        <div class="ps-title">Question Palette</div>
+        <div class="ps-legend">
+          <div class="leg"><div class="leg-dot ld-cur"></div>Current</div>
+          <div class="leg"><div class="leg-dot ld-ans"></div>Answered</div>
+          <div class="leg"><div class="leg-dot ld-skip"></div>Skipped</div>
+          <div class="leg"><div class="leg-dot ld-unvisit"></div>Not visited</div>
+        </div>
+      </div>
+      <div class="ps-grid-wrap">
+        <div class="ps-grid" id="paletteGrid"></div>
+      </div>
+      <div class="ps-summary">
+        <div class="pss-row"><span>Answered</span><span id="ssAns" style="color:var(--emerald)">0</span></div>
+        <div class="pss-row"><span>Skipped</span><span id="ssSkip" style="color:var(--amber)">0</span></div>
+        <div class="pss-row"><span>Not Visited</span><span id="ssNot">20</span></div>
+        <div class="pss-row"><span>Remaining</span><span id="ssRem" style="color:var(--rose)">20</span></div>
+      </div>
+    </div>
+
+    <div class="question-area" id="questionArea">
+      <div class="q-meta">
+        <div class="q-meta-left">
+          <div class="q-num" id="qNum">Question 1 of 20</div>
+          <div class="q-cat-tag" id="qCat">—</div>
+        </div>
+        <div class="q-badge qb-basic" id="qBadge">BASIC</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-text" id="qText">Loading...</div>
+        <div class="options-list" id="optsList"></div>
+      </div>
+
+      <div class="q-actions">
+        <button class="btn btn-prev" id="prevBtn" onclick="nav(-1)">← Prev</button>
+        <button class="btn btn-skip" onclick="skipQ()">⚡ Skip</button>
+        <button class="btn btn-next" id="nextBtn" onclick="nav(1)">Next →</button>
+        <button class="btn btn-submit" onclick="openSubmitModal()">🏁 Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-strip">
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">0 / 20 answered</div>
+  </div>
+</div>
+
+<!-- mobile fab -->
+<button class="mob-palette-fab" onclick="openMob()">📋</button>
+<div class="mob-overlay" id="mobOverlay" onclick="closeMob()"></div>
+<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-drawer-title">Question Palette</div>
+  <div class="mob-drawer-inner">
+    <div class="ps-grid" id="mobPaletteGrid"></div>
+  </div>
+</div>
+
+<!-- ══ RESULTS SCREEN ══ -->
+<div id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="res-header">
+      <h2 id="resTitle">Test Complete!</h2>
+      <p id="resSub">Here's your complete performance analysis</p>
+    </div>
+
+    <div class="score-hero">
+      <div class="score-ring-wrap">
+        <div class="score-ring">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle class="sr-bg" cx="75" cy="75" r="65"/>
+            <circle class="sr-fill" id="srFill" cx="75" cy="75" r="65"/>
+          </svg>
+          <div class="ring-inner">
+            <div class="ri-score" id="riScore">0</div>
+            <div class="ri-total" id="riTotal">/20</div>
+            <div class="ri-grade" id="riGrade">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="score-details">
+        <div class="sd-title" id="sdTitle">—</div>
+        <div class="sd-sub" id="sdSub">—</div>
+        <div class="sd-stats">
+          <div class="sd-chip"><span>Correct</span><span class="sc-val" id="sdCorrect" style="color:var(--emerald)">0</span></div>
+          <div class="sd-chip"><span>Wrong</span><span class="sc-val" id="sdWrong" style="color:var(--rose)">0</span></div>
+          <div class="sd-chip"><span>Skipped</span><span class="sc-val" id="sdSkipped" style="color:var(--amber)">0</span></div>
+          <div class="sd-chip"><span>Accuracy</span><span class="sc-val" id="sdAccuracy" style="color:var(--teal)">0%</span></div>
+          <div class="sd-chip"><span>Time Used</span><span class="sc-val" id="sdTime" style="color:var(--violet)">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ana-grid">
+      <div class="ana-tile"><div class="at-val" style="color:var(--emerald)" id="anC">0</div><div class="at-lbl">✓ Correct</div></div>
+      <div class="ana-tile"><div class="at-val" style="color:var(--rose)" id="anW">0</div><div class="at-lbl">✗ Wrong</div></div>
+      <div class="ana-tile"><div class="at-val" style="color:var(--amber)" id="anS">0</div><div class="at-lbl">⚡ Skipped</div></div>
+      <div class="ana-tile"><div class="at-val" style="color:var(--teal)" id="anA">0%</div><div class="at-lbl">🎯 Accuracy</div></div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3>By Category</h3>
+        <div class="bar-list" id="catChart"></div>
+      </div>
+      <div class="chart-card">
+        <h3>By Difficulty</h3>
+        <div class="bar-list" id="diffChart"></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-card-head">
+        <h3>Answer Review</h3>
+        <div class="review-filter">
+          <button class="rf-btn active" onclick="filterReview('all',this)">All</button>
+          <button class="rf-btn" onclick="filterReview('correct',this)">✓ Correct</button>
+          <button class="rf-btn" onclick="filterReview('wrong',this)">✗ Wrong</button>
+          <button class="rf-btn" onclick="filterReview('skipped',this)">⚡ Skipped</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="review-tbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Your Answer</th>
+              <th>Correct Answer</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="reviewBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="res-actions">
+      <button class="btn-retry" onclick="retryExam()">🔄 New Test</button>
+      <button class="btn-home2" onclick="goHome()">🏠 Change Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Modal -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal-box">
+    <div class="modal-icon">📋</div>
+    <h3>Submit Test?</h3>
+    <p id="modalMsg">Are you sure you want to submit your test now?</p>
+    <div class="modal-btns">
+      <button class="m-cancel" onclick="closeModal()">Continue</button>
+      <button class="m-submit" onclick="submitExam()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  500-QUESTION BANK — 25 Topics × 20 Questions Each
+//  Topics: Parts of Speech, Nouns, Pronouns, Verbs,
+//  Adjectives, Adverbs, Articles, Prepositions,
+//  Conjunctions, Tenses, Active/Passive Voice,
+//  Direct/Indirect Speech, Conditionals, Clauses,
+//  Modal Verbs, Subject-Verb Agreement, Degrees of Comparison,
+//  Gerund & Infinitive, Phrasal Verbs, Vocabulary,
+//  Idioms & Phrases, One Word Substitution,
+//  Figures of Speech, Sentence Correction, Punctuation
+// ══════════════════════════════════════════════════════
+const QB=[
+// ── 1. PARTS OF SPEECH (20) ──────────────────────────
+{id:1,l:"basic",c:"Parts of Speech",q:"Which of the following is a NOUN?",o:["Run","Beautiful","Happiness","Quickly"],a:2},
+{id:2,l:"basic",c:"Parts of Speech",q:"Identify the VERB: 'She <u>sings</u> beautifully.'",o:["She","sings","beautifully","(none)"],a:1},
+{id:3,l:"basic",c:"Parts of Speech",q:"Which word is an ADJECTIVE? 'The <u>tall</u> boy ran.'",o:["The","tall","boy","ran"],a:1},
+{id:4,l:"basic",c:"Parts of Speech",q:"Which word is an ADVERB in: 'He ran <u>quickly</u>.'?",o:["He","ran","quickly","(none)"],a:2},
+{id:5,l:"basic",c:"Parts of Speech",q:"'Wow! That was amazing!' — 'Wow' is a/an:",o:["Conjunction","Interjection","Preposition","Adverb"],a:1},
+{id:6,l:"basic",c:"Parts of Speech",q:"Which is a PROPER NOUN?",o:["City","River","Taj Mahal","Mountain"],a:2},
+{id:7,l:"basic",c:"Parts of Speech",q:"Which is an ABSTRACT NOUN?",o:["Table","River","Courage","Dog"],a:2},
+{id:8,l:"basic",c:"Parts of Speech",q:"'She speaks English fluently.' — 'fluently' is a/an:",o:["Adjective","Adverb","Noun","Verb"],a:1},
+{id:9,l:"intermediate",c:"Parts of Speech",q:"Which sentence contains a GERUND used as a subject?",o:["She is running fast.","Running is good exercise.","He made her run.","They ran quickly."],a:1},
+{id:10,l:"intermediate",c:"Parts of Speech",q:"'The <u>sleeping</u> dog did not bark.' — The underlined word is a:",o:["Gerund","Participle","Infinitive","Verb"],a:1},
+{id:11,l:"intermediate",c:"Parts of Speech",q:"Which is a COLLECTIVE NOUN?",o:["Bravery","Flock","Running","Beautiful"],a:1},
+{id:12,l:"intermediate",c:"Parts of Speech",q:"'He is a <u>fast</u> runner.' vs 'He runs <u>fast</u>.' — In the second sentence 'fast' is a:",o:["Adjective","Adverb","Noun","Verb"],a:1},
+{id:13,l:"advanced",c:"Parts of Speech",q:"'To err is human.' — The word 'To err' functions as a:",o:["Verb","Infinitive used as subject","Gerund","Participle"],a:1},
+{id:14,l:"advanced",c:"Parts of Speech",q:"In 'He painted the fence white', what part of speech is 'white'?",o:["Adverb","Adjective predicative","Object complement","Predicate adjective"],a:2},
+{id:15,l:"advanced",c:"Parts of Speech",q:"Which word functions as BOTH noun and verb without change?",o:["Beautiful","Run","Quickly","The"],a:1},
+{id:16,l:"advanced",c:"Parts of Speech",q:"'Much of the water <u>was</u> wasted.' — 'Much' here is a:",o:["Adjective","Pronoun","Adverb","Determiner used as pronoun"],a:3},
+{id:17,l:"expert",c:"Parts of Speech",q:"'He is a <u>has-been</u>.' — The hyphenated phrase functions as a:",o:["Verb","Adjective","Noun","Adverb"],a:2},
+{id:18,l:"expert",c:"Parts of Speech",q:"In transformational grammar, which part of speech can undergo 'nominalisation'?",o:["Nouns","Verbs and adjectives","Prepositions","Conjunctions"],a:1},
+{id:19,l:"expert",c:"Parts of Speech",q:"'The <u>then</u> government imposed restrictions.' — 'then' functions as:",o:["Adverb","Adjective (attributive)","Conjunction","Preposition"],a:1},
+{id:20,l:"expert",c:"Parts of Speech",q:"A word that modifies a verb, adjective, or another adverb is called:",o:["Adjective","Preposition","Adverb","Participle"],a:2},
+
+// ── 2. NOUNS (20) ─────────────────────────────────────
+{id:21,l:"basic",c:"Nouns",q:"What is the plural of 'child'?",o:["Childs","Childrens","Children","Childes"],a:2},
+{id:22,l:"basic",c:"Nouns",q:"What is the plural of 'ox'?",o:["Oxes","Oxen","Ox","Oxs"],a:1},
+{id:23,l:"basic",c:"Nouns",q:"Which word has an IRREGULAR plural?",o:["Books","Tables","Mice","Dogs"],a:2},
+{id:24,l:"basic",c:"Nouns",q:"What is the feminine of 'actor'?",o:["Actress","Actris","Actoress","Female actor"],a:0},
+{id:25,l:"basic",c:"Nouns",q:"Which is a COMMON GENDER noun?",o:["King","Queen","Doctor","Prince"],a:2},
+{id:26,l:"basic",c:"Nouns",q:"'The data ___ correct.' — Correct verb?",o:["are","is","were","am"],a:1},
+{id:27,l:"intermediate",c:"Nouns",q:"Which word is UNCOUNTABLE?",o:["Table","Chair","Furniture","Pen"],a:2},
+{id:28,l:"intermediate",c:"Nouns",q:"Identify the ABSTRACT NOUN from the verb 'decide':",o:["Decided","Decisive","Decision","Deciding"],a:2},
+{id:29,l:"intermediate",c:"Nouns",q:"'A <u>pride</u> of lions' — 'pride' is a:",o:["Common noun","Collective noun","Abstract noun","Proper noun"],a:1},
+{id:30,l:"intermediate",c:"Nouns",q:"Which noun has the same form in singular and plural?",o:["Boy","Deer","Man","Book"],a:1},
+{id:31,l:"intermediate",c:"Nouns",q:"The noun form of 'strong' is:",o:["Strongly","Stronger","Strength","Strengthen"],a:2},
+{id:32,l:"intermediate",c:"Nouns",q:"'News' is grammatically:",o:["Always plural","Always singular","Both","Neither"],a:1},
+{id:33,l:"advanced",c:"Nouns",q:"'The accused were acquitted.' — 'The accused' is:",o:["Proper noun","Collective noun","Adjective used as plural noun","Singular noun"],a:2},
+{id:34,l:"advanced",c:"Nouns",q:"Which of these is a COMPOUND NOUN?",o:["Sunlight","Quickly","Beautiful","Running"],a:0},
+{id:35,l:"advanced",c:"Nouns",q:"The plural of 'criterion' is:",o:["Criterions","Criterias","Criteria","Criteriones"],a:2},
+{id:36,l:"advanced",c:"Nouns",q:"'She has <u>two</u> loaves of bread.' — The noun 'loaves' is:",o:["Uncountable","Countable plural","Collective","Abstract"],a:1},
+{id:37,l:"expert",c:"Nouns",q:"In 'The jury has reached a verdict', 'jury' is treated as:",o:["Plural collective","Singular collective","Abstract noun","Proper noun"],a:1},
+{id:38,l:"expert",c:"Nouns",q:"Which is an example of a GERUND NOUN PHRASE?",o:["Running fast is fun.","He ran fast.","The fast runner won.","She runs fast."],a:0},
+{id:39,l:"expert",c:"Nouns",q:"'Scissors' is used with a ___ verb.",o:["Singular","Plural","Either","Neither"],a:1},
+{id:40,l:"expert",c:"Nouns",q:"The process of forming a noun from a verb (e.g. govern → governance) is called:",o:["Nominalisation","Conversion","Derivation","Inflection"],a:0},
+
+// ── 3. PRONOUNS (20) ──────────────────────────────────
+{id:41,l:"basic",c:"Pronouns",q:"'___ is going to market?' — Correct pronoun:",o:["Who","Whom","Which","That"],a:0},
+{id:42,l:"basic",c:"Pronouns",q:"Which pronoun replaces 'Ravi and Sita'?",o:["He","She","They","It"],a:2},
+{id:43,l:"basic",c:"Pronouns",q:"'The book belongs to ___.' — Correct object pronoun:",o:["she","he","they","him"],a:3},
+{id:44,l:"basic",c:"Pronouns",q:"'___ bag is this?' — Correct interrogative pronoun:",o:["Who","Whose","Whom","Which"],a:1},
+{id:45,l:"basic",c:"Pronouns",q:"Which is a REFLEXIVE pronoun?",o:["He","His","Himself","Him"],a:2},
+{id:46,l:"intermediate",c:"Pronouns",q:"'Either of the two girls can do it.' — 'Either' is a/an:",o:["Personal pronoun","Indefinite pronoun","Reflexive pronoun","Relative pronoun"],a:1},
+{id:47,l:"intermediate",c:"Pronouns",q:"'The man <u>who</u> called is my uncle.' — 'who' is a:",o:["Interrogative pronoun","Relative pronoun","Reflexive pronoun","Indefinite pronoun"],a:1},
+{id:48,l:"intermediate",c:"Pronouns",q:"Choose the correct form: 'Between you and ___, this is confidential.'",o:["I","me","myself","mine"],a:1},
+{id:49,l:"intermediate",c:"Pronouns",q:"'<u>Each</u> of the students submitted the assignment.' — 'Each' is:",o:["Adjective","Adverb","Distributive pronoun","Collective noun"],a:2},
+{id:50,l:"intermediate",c:"Pronouns",q:"Which pronoun is used for things/animals without gender?",o:["He","She","It","They"],a:2},
+{id:51,l:"advanced",c:"Pronouns",q:"'It is ___ who should apologise.' — Correct pronoun:",o:["he","him","his","himself"],a:0},
+{id:52,l:"advanced",c:"Pronouns",q:"'The committee expressed <u>its</u> view.' — This shows 'committee' treated as:",o:["Plural","Singular","Collective + plural","Abstract"],a:1},
+{id:53,l:"advanced",c:"Pronouns",q:"'<u>Whoever</u> comes first will get the prize.' — 'Whoever' is a:",o:["Relative pronoun","Interrogative pronoun","Compound relative pronoun","Indefinite pronoun"],a:2},
+{id:54,l:"advanced",c:"Pronouns",q:"Choose correct: '___ did you give the book to?'",o:["Who","Whom","Whose","Which"],a:1},
+{id:55,l:"expert",c:"Pronouns",q:"'None of the milk ___ spilled.' — Correct verb (treating none as singular):",o:["are","were","was","have been"],a:2},
+{id:56,l:"expert",c:"Pronouns",q:"In 'The teacher praised herself', the reflexive pronoun indicates:",o:["Emphasis","Reflexive action","Both possible","Neither"],a:1},
+{id:57,l:"expert",c:"Pronouns",q:"'They painted the wall themselves.' — 'themselves' is used for:",o:["Reflexive emphasis","Reflexive action","Reciprocal meaning","Indefinite reference"],a:0},
+{id:58,l:"expert",c:"Pronouns",q:"Which sentence uses the RECIPROCAL pronoun correctly?",o:["They blamed themselves.","They blamed each other.","Each blamed himself.","Both blamed him."],a:1},
+{id:59,l:"expert",c:"Pronouns",q:"'One must do <u>one's</u> duty.' — 'one's' is a:",o:["Personal possessive","Impersonal possessive pronoun","Reflexive","Relative"],a:1},
+{id:60,l:"expert",c:"Pronouns",q:"'This is the house <u>that</u> Jack built.' — 'that' here functions as:",o:["Demonstrative pronoun","Relative pronoun","Conjunction","Adjective"],a:1},
+
+// ── 4. VERBS (20) ──────────────────────────────────────
+{id:61,l:"basic",c:"Verbs",q:"What is the past tense of 'go'?",o:["Goed","Gone","Went","Goes"],a:2},
+{id:62,l:"basic",c:"Verbs",q:"Which is the PAST PARTICIPLE of 'break'?",o:["Broke","Breaked","Broken","Breaking"],a:2},
+{id:63,l:"basic",c:"Verbs",q:"'She ___ not know the answer.' — Correct auxiliary:",o:["do","does","did","done"],a:1},
+{id:64,l:"basic",c:"Verbs",q:"Which verb is IRREGULAR?",o:["Talk","Walk","Play","Think"],a:3},
+{id:65,l:"basic",c:"Verbs",q:"A verb that needs an object is called:",o:["Intransitive","Transitive","Linking","Auxiliary"],a:1},
+{id:66,l:"intermediate",c:"Verbs",q:"'The cake <u>smells</u> delicious.' — 'smells' is a:",o:["Transitive verb","Intransitive verb","Linking verb","Auxiliary verb"],a:2},
+{id:67,l:"intermediate",c:"Verbs",q:"'She <u>had</u> her hair cut.' — The main verb structure here is:",o:["Passive","Causative 'have'","Perfect tense","Stative"],a:1},
+{id:68,l:"intermediate",c:"Verbs",q:"Which is a STATIVE verb (not normally used in continuous)?",o:["Run","Know","Walk","Jump"],a:1},
+{id:69,l:"intermediate",c:"Verbs",q:"'He <u>used to</u> smoke.' — This structure indicates:",o:["Present habit","Past habit (now stopped)","Future intention","Continuous action"],a:1},
+{id:70,l:"intermediate",c:"Verbs",q:"Identify the PHRASAL VERB: 'She gave up smoking.'",o:["She gave","gave up","up smoking","gave up smoking"],a:1},
+{id:71,l:"advanced",c:"Verbs",q:"'I wish I <u>were</u> taller.' — The subjunctive 'were' expresses:",o:["Past fact","Unreal/hypothetical wish","Future possibility","Conditional result"],a:1},
+{id:72,l:"advanced",c:"Verbs",q:"'He <u>is known</u> to be honest.' — The verb form is:",o:["Active voice, present","Passive voice, present","Perfect tense","Causative"],a:1},
+{id:73,l:"advanced",c:"Verbs",q:"Which verb completes: 'The police ___ investigating the case'?",o:["is","are","was","were"],a:1},
+{id:74,l:"advanced",c:"Verbs",q:"'No sooner had he left ___ the phone rang.'",o:["than","then","when","as"],a:0},
+{id:75,l:"expert",c:"Verbs",q:"'She <u>let</u> him go.' — After 'let', the infinitive is used:",o:["With 'to'","Without 'to'","With '-ing'","With past tense"],a:1},
+{id:76,l:"expert",c:"Verbs",q:"'I <u>would rather</u> you stayed.' — The verb after 'rather' in this construction is:",o:["Infinitive","Past subjunctive","Present subjunctive","Gerund"],a:1},
+{id:77,l:"expert",c:"Verbs",q:"'The accused <u>pleaded</u> not guilty.' — The verb 'plead' here takes:",o:["Direct object","Adjective complement","Adverb","Indirect object"],a:1},
+{id:78,l:"expert",c:"Verbs",q:"In 'She made him <u>cry</u>', the verb 'cry' is a:",o:["Gerund","Bare infinitive","Full infinitive","Participle"],a:1},
+{id:79,l:"expert",c:"Verbs",q:"Ergative verbs can be used both transitively and intransitively. Which is ergative?",o:["Walk","Break","Jump","Run"],a:1},
+{id:80,l:"expert",c:"Verbs",q:"'He kept <u>talking</u>.' — The verb form '-ing' here follows a verb that takes:",o:["Infinitive","Gerund only","Both equally","Past participle"],a:1},
+
+// ── 5. ARTICLES (20) ──────────────────────────────────
+{id:81,l:"basic",c:"Articles",q:"'___ apple a day keeps the doctor away.'",o:["A","An","The","—"],a:1},
+{id:82,l:"basic",c:"Articles",q:"'She is ___ honest woman.'",o:["a","an","the","—"],a:1},
+{id:83,l:"basic",c:"Articles",q:"'___ Sun rises in the East.'",o:["A","An","The","—"],a:2},
+{id:84,l:"basic",c:"Articles",q:"Which sentence uses articles CORRECTLY?",o:["He is a university student.","She ate an mango.","I saw a elephant.","She is an European."],a:0},
+{id:85,l:"basic",c:"Articles",q:"No article is used before names of:",o:["Specific rivers","Languages","Oceans","Mountain ranges"],a:1},
+{id:86,l:"intermediate",c:"Articles",q:"'He is ___ best player in the team.'",o:["a","an","the","—"],a:2},
+{id:87,l:"intermediate",c:"Articles",q:"'She plays ___ violin beautifully.'",o:["a","an","the","—"],a:2},
+{id:88,l:"intermediate",c:"Articles",q:"'He was elected ___ president of the club.'",o:["a","an","the","—"],a:3},
+{id:89,l:"intermediate",c:"Articles",q:"'___ Himalayas lie to the north of India.' — Correct article?",o:["A","An","The","—"],a:2},
+{id:90,l:"intermediate",c:"Articles",q:"'What ___ wonderful idea!'",o:["a","an","the","—"],a:0},
+{id:91,l:"advanced",c:"Articles",q:"'He was taken to ___ hospital.' (generic, not specific) — Article?",o:["a","an","the","—"],a:3},
+{id:92,l:"advanced",c:"Articles",q:"'___ rich should help the poor.' — What does 'the' indicate here?",o:["Specific group","Generic class of people","Superlative","Particular person"],a:1},
+{id:93,l:"advanced",c:"Articles",q:"'She is ___ MBA graduate.' — Correct article (pronounce: em-bee-ay)?",o:["a","an","the","—"],a:1},
+{id:94,l:"advanced",c:"Articles",q:"'He returned after ___ hour's rest.' — Correct article?",o:["a","an","the","—"],a:1},
+{id:95,l:"advanced",c:"Articles",q:"'___ Amazon is the largest river in the world.' — Why use 'The'?",o:["It is a proper noun","Rivers take 'the'","It is uncountable","It is abstract"],a:1},
+{id:96,l:"expert",c:"Articles",q:"'Man is mortal.' — The noun 'man' here is used:",o:["With definite article implied","Without article — generic use","With indefinite article implied","As uncountable noun"],a:1},
+{id:97,l:"expert",c:"Articles",q:"'___ unit of measurement' — Correct article (unit starts with /j/ sound)?",o:["a","an","the","—"],a:0},
+{id:98,l:"expert",c:"Articles",q:"'He is in ___ bed.' (meaning resting/sick) vs 'He is in ___ bed.' (specific bed) — First blank:",o:["the","a","—","an"],a:2},
+{id:99,l:"expert",c:"Articles",q:"'He comes from ___ United Kingdom.' — Correct article?",o:["a","an","the","—"],a:2},
+{id:100,l:"expert",c:"Articles",q:"'Once upon ___ time there was a king.' — Article?",o:["a","an","the","—"],a:0},
+
+// ── 6. PREPOSITIONS (20) ──────────────────────────────
+{id:101,l:"basic",c:"Prepositions",q:"'He is good ___ mathematics.'",o:["in","at","on","with"],a:1},
+{id:102,l:"basic",c:"Prepositions",q:"'She arrived ___ Monday morning.'",o:["in","at","on","by"],a:2},
+{id:103,l:"basic",c:"Prepositions",q:"'He has been waiting ___ two hours.'",o:["since","from","for","during"],a:2},
+{id:104,l:"basic",c:"Prepositions",q:"'She was born ___ 1998.'",o:["on","in","at","by"],a:1},
+{id:105,l:"basic",c:"Prepositions",q:"'The cat sat ___ the mat.'",o:["above","on","in","between"],a:1},
+{id:106,l:"intermediate",c:"Prepositions",q:"'He is looking forward ___ meeting you.'",o:["for","at","to","in"],a:2},
+{id:107,l:"intermediate",c:"Prepositions",q:"'She insisted ___ taking the exam again.'",o:["at","for","of","on"],a:3},
+{id:108,l:"intermediate",c:"Prepositions",q:"'The meeting will be held ___ 15 March.'",o:["in","at","on","by"],a:2},
+{id:109,l:"intermediate",c:"Prepositions",q:"'She has been ill ___ last Monday.'",o:["for","since","from","during"],a:1},
+{id:110,l:"intermediate",c:"Prepositions",q:"'He is married ___ a doctor.'",o:["with","to","for","by"],a:1},
+{id:111,l:"advanced",c:"Prepositions",q:"'She is angry ___ him ___ his behaviour.' — Correct pair:",o:["with / about","at / for","on / about","with / for"],a:0},
+{id:112,l:"advanced",c:"Prepositions",q:"'He died ___ cancer.' — Correct preposition:",o:["with","from","of","by"],a:2},
+{id:113,l:"advanced",c:"Prepositions",q:"'She is envious ___ her friend's success.'",o:["at","of","with","about"],a:1},
+{id:114,l:"advanced",c:"Prepositions",q:"'The book is ___ print.' (no longer available)",o:["in","out of","beyond","above"],a:1},
+{id:115,l:"advanced",c:"Prepositions",q:"'He succeeded ___ passing the exam ___ much effort.'",o:["in/without","at/with","in/with","on/by"],a:0},
+{id:116,l:"expert",c:"Prepositions",q:"'He was accused ___ theft.' — Correct preposition:",o:["for","with","of","about"],a:2},
+{id:117,l:"expert",c:"Prepositions",q:"'She has a flair ___ languages.'",o:["with","for","in","at"],a:1},
+{id:118,l:"expert",c:"Prepositions",q:"'He is oblivious ___ his surroundings.'",o:["about","of","to","with"],a:2},
+{id:119,l:"expert",c:"Prepositions",q:"'She prevailed ___ her opponent ___ the final round.'",o:["over/in","against/at","on/during","upon/through"],a:0},
+{id:120,l:"expert",c:"Prepositions",q:"'The bill was passed ___ a majority ___ two votes.'",o:["by/of","with/by","on/of","in/with"],a:0},
+
+// ── 7. CONJUNCTIONS (20) ──────────────────────────────
+{id:121,l:"basic",c:"Conjunctions",q:"Which is a COORDINATING conjunction?",o:["Although","Because","And","Since"],a:2},
+{id:122,l:"basic",c:"Conjunctions",q:"'I was tired, ___ I continued working.'",o:["but","or","so","for"],a:0},
+{id:123,l:"basic",c:"Conjunctions",q:"'___ she was ill, she came to school.'",o:["Although","And","But","So"],a:0},
+{id:124,l:"basic",c:"Conjunctions",q:"FANBOYS stands for ___ conjunctions.",o:["Subordinating","Correlative","Coordinating","Compound"],a:2},
+{id:125,l:"basic",c:"Conjunctions",q:"'She studied hard ___ she could pass.' — Correct conjunction:",o:["but","so that","although","yet"],a:1},
+{id:126,l:"intermediate",c:"Conjunctions",q:"'Neither he ___ she attended.' — Correct conjunction:",o:["or","nor","and","but"],a:1},
+{id:127,l:"intermediate",c:"Conjunctions",q:"Which pair is a CORRELATIVE conjunction?",o:["And/but","Either/or","Although/because","Since/when"],a:1},
+{id:128,l:"intermediate",c:"Conjunctions",q:"'He worked hard; ___, he failed.' — Best conjunction:",o:["however","therefore","moreover","thus"],a:0},
+{id:129,l:"intermediate",c:"Conjunctions",q:"'___ you work hard, you will not succeed.'",o:["Unless","Until","Although","Whereas"],a:0},
+{id:130,l:"intermediate",c:"Conjunctions",q:"'Hardly had I left ___ it began to rain.'",o:["when","than","before","after"],a:0},
+{id:131,l:"advanced",c:"Conjunctions",q:"'No sooner had she finished ___ the bell rang.'",o:["when","than","then","as"],a:1},
+{id:132,l:"advanced",c:"Conjunctions",q:"'He is not only intelligent ___ also hardworking.'",o:["but","and","or","yet"],a:0},
+{id:133,l:"advanced",c:"Conjunctions",q:"Which conjunction expresses CONTRAST?",o:["Because","Therefore","Whereas","Moreover"],a:2},
+{id:134,l:"advanced",c:"Conjunctions",q:"'She behaved as ___ nothing had happened.'",o:["if","though","that","when"],a:0},
+{id:135,l:"advanced",c:"Conjunctions",q:"'___ intelligent ___ she is, she cannot solve this.' — Correlative:",o:["However/that","As/as","Such/that","So/that"],a:0},
+{id:136,l:"expert",c:"Conjunctions",q:"'Scarcely had he arrived ___ trouble began.'",o:["when","than","before","after"],a:0},
+{id:137,l:"expert",c:"Conjunctions",q:"Which sentence uses a SUBORDINATING conjunction correctly?",o:["He both sings and dances.","She will come or she won't.","He ran so fast that he fell.","Either come now or leave."],a:2},
+{id:138,l:"expert",c:"Conjunctions",q:"'___ the fact that she tried hard, she failed.' — Correct conjunction:",o:["Despite","Although","Even though","Because of"],a:0},
+{id:139,l:"expert",c:"Conjunctions",q:"'She succeeded ___ the odds were against her.' — Best choice:",o:["while","though","because","for"],a:1},
+{id:140,l:"expert",c:"Conjunctions",q:"A conjunction that joins two equal grammatical units is called:",o:["Subordinating","Correlative","Coordinating","Causative"],a:2},
+
+// ── 8. TENSES (20) ─────────────────────────────────────
+{id:141,l:"basic",c:"Tenses",q:"'She ___ to school every day.' — Correct verb:",o:["go","goes","went","is going"],a:1},
+{id:142,l:"basic",c:"Tenses",q:"Which sentence is in SIMPLE PAST?",o:["I am eating.","I eat rice.","I ate rice.","I will eat."],a:2},
+{id:143,l:"basic",c:"Tenses",q:"The Present Perfect uses ___ + V3:",o:["had","have/has","will have","was/were"],a:1},
+{id:144,l:"basic",c:"Tenses",q:"'___ you ever been to Delhi?'",o:["Did","Do","Have","Has"],a:2},
+{id:145,l:"basic",c:"Tenses",q:"'They ___ cricket when it rained.'",o:["play","played","were playing","will play"],a:2},
+{id:146,l:"intermediate",c:"Tenses",q:"'She ___ for this company since 2015.'",o:["worked","is working","has been working","was working"],a:2},
+{id:147,l:"intermediate",c:"Tenses",q:"'By next year, she ___ her studies.'",o:["completes","will complete","will have completed","has completed"],a:2},
+{id:148,l:"intermediate",c:"Tenses",q:"'I wish I ___ a bird.' — Correct subjunctive:",o:["am","was","were","be"],a:2},
+{id:149,l:"intermediate",c:"Tenses",q:"'She had been working for hours before she ___.'",o:["stopped","stops","has stopped","would stop"],a:0},
+{id:150,l:"intermediate",c:"Tenses",q:"'No sooner had he arrived ___ the phone rang.'",o:["than","then","when","before"],a:0},
+{id:151,l:"advanced",c:"Tenses",q:"Correct sequence: 'If he ___ harder, he ___ the exam.'",o:["studied/would pass","studies/will pass","had studied/would have passed","will study/would pass"],a:2},
+{id:152,l:"advanced",c:"Tenses",q:"'I would rather you ___ late.' — Correct subjunctive:",o:["don't come","didn't come","wouldn't come","hadn't come"],a:1},
+{id:153,l:"advanced",c:"Tenses",q:"'She has been waiting here ___ 9 o'clock.'",o:["for","from","since","during"],a:2},
+{id:154,l:"advanced",c:"Tenses",q:"'Scarcely had she left ___ the phone rang.'",o:["than","then","when","before"],a:2},
+{id:155,l:"advanced",c:"Tenses",q:"'By the time she arrived, the program ___.'",o:["had already started","has already started","already started","was starting"],a:0},
+{id:156,l:"expert",c:"Tenses",q:"'He <u>will have been teaching</u> for 20 years by 2030.' — This tense is:",o:["Future perfect","Future continuous","Future perfect continuous","Future simple"],a:2},
+{id:157,l:"expert",c:"Tenses",q:"Identify the error: 'When I will reach home, I will call you.'",o:["When","will reach","I will call","you"],a:1},
+{id:158,l:"expert",c:"Tenses",q:"'She <u>is always losing</u> her keys.' — The present continuous here expresses:",o:["Ongoing action","Irritating habit","Planned future","Temporary state"],a:1},
+{id:159,l:"expert",c:"Tenses",q:"'He insisted that she ___ the report.' — Correct subjunctive:",o:["submits","submitted","submit","has submitted"],a:2},
+{id:160,l:"expert",c:"Tenses",q:"'I have known him ___ we were children.'",o:["for","from","since","during"],a:2},
+
+// ── 9. ACTIVE / PASSIVE VOICE (20) ────────────────────
+{id:161,l:"basic",c:"Active/Passive Voice",q:"'The teacher punished the student.' — Passive:",o:["The student has been punished by the teacher.","The student was punished by the teacher.","The student is punished by the teacher.","The student punished by the teacher."],a:1},
+{id:162,l:"basic",c:"Active/Passive Voice",q:"'She is writing a letter.' — Passive:",o:["A letter written by her.","A letter is being written by her.","A letter was written by her.","A letter has been written by her."],a:1},
+{id:163,l:"basic",c:"Active/Passive Voice",q:"'The letter ___ by the manager yesterday.'",o:["was signed","is signed","has been signed","signed"],a:0},
+{id:164,l:"intermediate",c:"Active/Passive Voice",q:"'They should send the parcel immediately.' — Passive:",o:["The parcel should send immediately.","The parcel should be sent immediately.","The parcel must be sent immediately.","The parcel should have been sent immediately."],a:1},
+{id:165,l:"intermediate",c:"Active/Passive Voice",q:"'The results will be announced tomorrow.' — Active:",o:["They will be announcing the results.","They announced the results.","They will announce the results tomorrow.","The results are announced."],a:2},
+{id:166,l:"intermediate",c:"Active/Passive Voice",q:"'Let the door be opened.' — This is in ___ voice.",o:["Active","Passive","Both","Neither"],a:1},
+{id:167,l:"intermediate",c:"Active/Passive Voice",q:"'She had already finished the work.' — Passive:",o:["The work had already been finished by her.","The work was already finished.","The work has been finished by her.","The work had finished."],a:0},
+{id:168,l:"intermediate",c:"Active/Passive Voice",q:"'Who broke the window?' — Passive:",o:["By whom was the window broken?","Who was the window broken by?","The window was broken by whom?","By whom the window was broken?"],a:0},
+{id:169,l:"advanced",c:"Active/Passive Voice",q:"'He is known to be honest.' — Active equivalent:",o:["People know him to be honest.","People knew him honest.","He knows honesty.","He is honestly known."],a:0},
+{id:170,l:"advanced",c:"Active/Passive Voice",q:"Which sentence CANNOT be made passive?",o:["She sings a song.","He resembles his father.","They built a bridge.","She wrote a letter."],a:1},
+{id:171,l:"advanced",c:"Active/Passive Voice",q:"'It is said that he is honest.' — Active equivalent:",o:["People say that he is honest.","People said he was honest.","He says he is honest.","He is said to be honest."],a:0},
+{id:172,l:"advanced",c:"Active/Passive Voice",q:"'The police caught the thief.' — Passive (formal):",o:["The thief was caught by the police.","The thief is caught.","The thief had been caught.","The thief got caught."],a:0},
+{id:173,l:"expert",c:"Active/Passive Voice",q:"'They were seen to cross the road.' — Active:",o:["Someone saw them crossing the road.","Someone saw them to cross the road.","Someone saw them cross the road.","Both A and C"],a:3},
+{id:174,l:"expert",c:"Active/Passive Voice",q:"Identify the AGENTLESS passive: ___",o:["The window was broken by the boy.","The thief was caught by the police.","The meeting has been cancelled.","Mistakes were made by management."],a:2},
+{id:175,l:"expert",c:"Active/Passive Voice",q:"'She got her car repaired.' — The structure 'get + object + past participle' is called:",o:["Causative passive","Reflexive passive","Ergative passive","Middle voice"],a:0},
+{id:176,l:"expert",c:"Active/Passive Voice",q:"'She made herself heard.' — The passive here is:",o:["Full passive","Causative","Reflexive passive","Middle voice"],a:2},
+{id:177,l:"expert",c:"Active/Passive Voice",q:"Which passive structure suggests the subject caused the action?",o:["Be-passive","Get-passive","Have-passive","Become-passive"],a:1},
+{id:178,l:"expert",c:"Active/Passive Voice",q:"'Mistakes were made.' — This sentence is notable because it:",o:["Has no subject","Hides the agent (agentless passive)","Uses wrong tense","Is incomplete"],a:1},
+{id:179,l:"expert",c:"Active/Passive Voice",q:"'The contract <u>is being drawn up</u> by the lawyers.' — The tense is:",o:["Present perfect passive","Present continuous passive","Simple present passive","Future passive"],a:1},
+{id:180,l:"expert",c:"Active/Passive Voice",q:"'He was made to apologise.' — The infinitive after 'be made' uses:",o:["Bare infinitive","Full infinitive (to+V)","Past participle","Gerund"],a:1},
+
+// ── 10. DIRECT / INDIRECT SPEECH (20) ────────────────
+{id:181,l:"basic",c:"Direct/Indirect Speech",q:"He said, 'I am happy.' — Indirect:",o:["He said that he is happy.","He said that he was happy.","He told that he was happy.","He said he am happy."],a:1},
+{id:182,l:"basic",c:"Direct/Indirect Speech",q:"She said to me, 'Are you ready?' — Indirect:",o:["She asked me if I was ready.","She told me am I ready.","She asked me that was I ready.","She asked me whether I am ready."],a:0},
+{id:183,l:"basic",c:"Direct/Indirect Speech",q:"'Don't waste time,' he told us. — Indirect:",o:["He told us not to waste time.","He said us don't waste time.","He told us that don't waste time.","He asked us not wasting time."],a:0},
+{id:184,l:"intermediate",c:"Direct/Indirect Speech",q:"She said, 'I have finished my work.' — Indirect:",o:["She said she has finished her work.","She said that she had finished her work.","She told she had finished her work.","She said she finished her work."],a:1},
+{id:185,l:"intermediate",c:"Direct/Indirect Speech",q:"He asked, 'Where do you live?' — Indirect:",o:["He asked where did I live.","He asked where I lived.","He asked where do I live.","He said where I lived."],a:1},
+{id:186,l:"intermediate",c:"Direct/Indirect Speech",q:"'Let's go to the park,' she said. — Indirect:",o:["She suggested that they should go to the park.","She said let's go to the park.","She proposed going to the park.","Both A and C"],a:3},
+{id:187,l:"intermediate",c:"Direct/Indirect Speech",q:"'What a beautiful painting!' she exclaimed. — Indirect:",o:["She exclaimed that it was a very beautiful painting.","She said what a beautiful painting.","She told it was beautiful painting.","She exclaimed what a beautiful painting it was."],a:0},
+{id:188,l:"intermediate",c:"Direct/Indirect Speech",q:"'I will help you tomorrow,' he promised. — Indirect:",o:["He promised that he will help me the next day.","He promised to help me the next day.","He promised he would help me tomorrow.","He said he would help me the next day."],a:1},
+{id:189,l:"advanced",c:"Direct/Indirect Speech",q:"When reporting a general truth in indirect speech, the tense:",o:["Always changes","Does not change","Changes only sometimes","Is always past"],a:1},
+{id:190,l:"advanced",c:"Direct/Indirect Speech",q:"'She asked, \"How long have you been here?\"' — Indirect:",o:["She asked how long I had been there.","She asked how long have I been there.","She asked how long was I there.","She asked that how long I had been there."],a:0},
+{id:191,l:"advanced",c:"Direct/Indirect Speech",q:"'I was here yesterday,' he said. — 'yesterday' changes to:",o:["the day before","the previous day","the last day","Both A and B are correct"],a:3},
+{id:192,l:"advanced",c:"Direct/Indirect Speech",q:"'Could you please open the window?' — Indirect request:",o:["He asked if I could open the window.","He requested me to open the window.","He asked me to please open the window.","Both A and B are acceptable"],a:3},
+{id:193,l:"expert",c:"Direct/Indirect Speech",q:"When the reporting verb is in PRESENT tense, the tense of reported speech:",o:["Changes back one tense","Does not change","Becomes past perfect","Becomes future"],a:1},
+{id:194,l:"expert",c:"Direct/Indirect Speech",q:"'He said, \"I saw her two days ago.\"' — Indirect:",o:["He said he had seen her two days ago.","He said he had seen her two days before.","He said he saw her two days before.","He said he had seen her the day before."],a:1},
+{id:195,l:"expert",c:"Direct/Indirect Speech",q:"'She ordered, \"Sit down!\"' — Indirect:",o:["She ordered them sit down.","She ordered that they sat down.","She ordered them to sit down.","She said them to sit down."],a:2},
+{id:196,l:"expert",c:"Direct/Indirect Speech",q:"'I hope I pass the exam,' she said. — Indirect:",o:["She said she hoped she passed the exam.","She hoped that she would pass the exam.","She said she hoped she would pass the exam.","She hoped she passes the exam."],a:2},
+{id:197,l:"expert",c:"Direct/Indirect Speech",q:"'This' in direct speech becomes ___ in indirect speech:",o:["these","that","the","it"],a:1},
+{id:198,l:"expert",c:"Direct/Indirect Speech",q:"'He said, \"I must leave now.\"' — 'must' in indirect speech becomes:",o:["must","had to","should","would"],a:1},
+{id:199,l:"expert",c:"Direct/Indirect Speech",q:"'She said, \"I may come tomorrow.\"' — Indirect:",o:["She said she may come the next day.","She said she might come the following day.","She said she might have come the next day.","She said she could come."],a:1},
+{id:200,l:"expert",c:"Direct/Indirect Speech",q:"Free indirect speech is a narrative technique where:",o:["The writer quotes directly","The narrator blends character's thoughts without markers","Indirect speech uses formal reporting","Speech marks are always used"],a:1},
+
+// ── 11. CONDITIONALS (20) ─────────────────────────────
+{id:201,l:"basic",c:"Conditionals",q:"'If it rains, I ___ stay at home.' — Zero/First conditional:",o:["would","will","stay","stayed"],a:1},
+{id:202,l:"intermediate",c:"Conditionals",q:"'If I were rich, I ___ travel the world.' — Type:",o:["First/will travel","Second/would travel","Third/would have traveled","Zero/travel"],a:1},
+{id:203,l:"intermediate",c:"Conditionals",q:"'If she had studied, she ___ passed.' — Correct form:",o:["would pass","will have passed","would have passed","had passed"],a:2},
+{id:204,l:"intermediate",c:"Conditionals",q:"'Unless you work hard, you ___ succeed.'",o:["will","won't","would","wouldn't"],a:1},
+{id:205,l:"intermediate",c:"Conditionals",q:"'Had I known earlier, I ___ helped you.'",o:["will have","would have","could","had"],a:1},
+{id:206,l:"advanced",c:"Conditionals",q:"'Were she to apply, she ___ get the job.' — This is an example of:",o:["Zero conditional","Inverted conditional (formal)","Third conditional","Mixed conditional"],a:1},
+{id:207,l:"advanced",c:"Conditionals",q:"'If I were you, I would apologise.' — This is a/an ___ conditional.",o:["First","Zero","Second","Third"],a:2},
+{id:208,l:"advanced",c:"Conditionals",q:"'If it had not rained, the match ___ played.' — Correct form:",o:["would be","could be","would have been","will have been"],a:2},
+{id:209,l:"advanced",c:"Conditionals",q:"Mixed conditional: 'If she had slept well last night, she ___ tired now.'",o:["wouldn't be","won't be","wouldn't have been","hadn't been"],a:0},
+{id:210,l:"advanced",c:"Conditionals",q:"'Should you need help, call me.' — This is equivalent to:",o:["If you needed help, call me.","If you should need help, call me.","If you need help, call me.","Had you needed help, call me."],a:2},
+{id:211,l:"expert",c:"Conditionals",q:"'But for your help, I would have failed.' — 'But for' introduces a/an:",o:["Condition (third conditional sense)","Result","Contrast","Comparison"],a:0},
+{id:212,l:"expert",c:"Conditionals",q:"Identify the ZERO conditional: ___",o:["If you heat ice, it melts.","If she studies, she will pass.","If I were rich, I'd travel.","If she had come, she would have met him."],a:0},
+{id:213,l:"expert",c:"Conditionals",q:"'I would have come if you ___ invited me.' — Correct form:",o:["had","have","would have","did"],a:0},
+{id:214,l:"expert",c:"Conditionals",q:"'Provided that she agrees, the plan will proceed.' — 'Provided that' is a:",o:["Coordinating conjunction","Conditional conjunction","Causative conjunction","Relative pronoun"],a:1},
+{id:215,l:"expert",c:"Conditionals",q:"'She acts as though she ___ the boss.' (she is not) — Correct form:",o:["is","was","were","had been"],a:2},
+{id:216,l:"expert",c:"Conditionals",q:"'Even if you apologise, she ___ forgive you.' — Which conditional?",o:["Zero","First","Second","Third"],a:1},
+{id:217,l:"expert",c:"Conditionals",q:"'I wish it ___ raining.' (current wish) — Correct form:",o:["stops","stopped","were not","had stopped"],a:2},
+{id:218,l:"expert",c:"Conditionals",q:"'If only I ___ listened to her!' — Expresses:",o:["Regret about past","Current wish","Future possibility","Condition"],a:0},
+{id:219,l:"expert",c:"Conditionals",q:"'Supposing she refuses, what will we do?' — 'Supposing' here is:",o:["Participle","Conditional conjunction","Gerund","Verb"],a:1},
+{id:220,l:"expert",c:"Conditionals",q:"In a TYPE 3 conditional, the main clause uses:",o:["would + V1","would have + V3","had + V3","will + V1"],a:1},
+
+// ── 12. CLAUSES (20) ──────────────────────────────────
+{id:221,l:"basic",c:"Clauses",q:"Identify the NOUN CLAUSE: 'I know that he is honest.'",o:["I know","that he is honest","he is honest","I know that"],a:1},
+{id:222,l:"basic",c:"Clauses",q:"'The man who called you is my uncle.' — 'who called you' is a/an:",o:["Noun clause","Relative/Adjective clause","Adverb clause","Main clause"],a:1},
+{id:223,l:"intermediate",c:"Clauses",q:"'When she arrived, the party had started.' — 'When she arrived' is a/an:",o:["Noun clause","Adjective clause","Adverb clause of time","Independent clause"],a:2},
+{id:224,l:"intermediate",c:"Clauses",q:"'I will go wherever you go.' — The subordinate clause is a/an:",o:["Noun clause","Adjective clause","Adverb clause of place","Adverb clause of time"],a:2},
+{id:225,l:"intermediate",c:"Clauses",q:"'She studied hard so that she would pass.' — Clause type:",o:["Purpose","Result","Reason","Concession"],a:0},
+{id:226,l:"intermediate",c:"Clauses",q:"'He was so tired that he fell asleep.' — Clause type:",o:["Purpose","Result","Manner","Condition"],a:1},
+{id:227,l:"advanced",c:"Clauses",q:"'The moment she heard the news, she cried.' — 'The moment' introduces a/an:",o:["Noun clause","Adjective clause","Temporal clause","Manner clause"],a:2},
+{id:228,l:"advanced",c:"Clauses",q:"'Although he was tired, he continued.' — The adverb clause expresses:",o:["Time","Reason","Concession","Condition"],a:2},
+{id:229,l:"advanced",c:"Clauses",q:"Which sentence contains an EMBEDDED clause?",o:["She ran quickly.","The fact that she passed surprised everyone.","He is tall and handsome.","She came and left."],a:1},
+{id:230,l:"advanced",c:"Clauses",q:"'She left before I could say goodbye.' — Clause type:",o:["Noun clause","Adjective clause","Adverb clause of time","Adverb clause of manner"],a:2},
+{id:231,l:"advanced",c:"Clauses",q:"A sentence with one independent and one or more dependent clauses is:",o:["Simple","Compound","Complex","Compound-complex"],a:2},
+{id:232,l:"advanced",c:"Clauses",q:"'Though he tried, he could not succeed, and he gave up.' — Sentence type:",o:["Simple","Compound","Complex","Compound-complex"],a:3},
+{id:233,l:"expert",c:"Clauses",q:"'That she would succeed was never in doubt.' — The subject clause is:",o:["An adjective clause","A noun clause as subject","A relative clause","An adverbial clause"],a:1},
+{id:234,l:"expert",c:"Clauses",q:"'The house <u>where he was born</u> has been demolished.' — Clause type:",o:["Adverb clause of place","Relative/Adjective clause","Noun clause","Temporal clause"],a:1},
+{id:235,l:"expert",c:"Clauses",q:"In 'He denied <u>that he had stolen</u> the money', the underlined clause is the object of:",o:["A transitive verb","A preposition","An adjective","An adverb"],a:0},
+{id:236,l:"expert",c:"Clauses",q:"'She works as though her life depends on it.' — Clause type:",o:["Manner","Condition","Reason","Concession"],a:0},
+{id:237,l:"expert",c:"Clauses",q:"A RELATIVE clause that gives ESSENTIAL information is called:",o:["Non-defining","Defining/Restrictive","Embedded","Nominal"],a:1},
+{id:238,l:"expert",c:"Clauses",q:"'My sister, who lives in Delhi, is a doctor.' — Clause type:",o:["Restrictive relative clause","Non-restrictive relative clause","Noun clause","Adverb clause"],a:1},
+{id:239,l:"expert",c:"Clauses",q:"'Whatever you decide, I will support you.' — 'Whatever you decide' is:",o:["Noun clause (object)","Adverb clause of concession","Adjective clause","Conditional clause"],a:1},
+{id:240,l:"expert",c:"Clauses",q:"The clause that cannot stand alone as a sentence is called:",o:["Independent clause","Main clause","Dependent clause","Coordinate clause"],a:2},
+
+// ── 13. MODAL VERBS (20) ──────────────────────────────
+{id:241,l:"basic",c:"Modal Verbs",q:"'You ___ not smoke here.' — Prohibition:",o:["could","might","must","should"],a:2},
+{id:242,l:"basic",c:"Modal Verbs",q:"'She ___ speak five languages at age twelve.' — Past ability:",o:["can","could","may","must"],a:1},
+{id:243,l:"basic",c:"Modal Verbs",q:"'It ___ rain later; take your umbrella.' — Possibility:",o:["must","will","might","shall"],a:2},
+{id:244,l:"intermediate",c:"Modal Verbs",q:"'You ___ have told me earlier.' — Criticism of past action:",o:["can","may","should","will"],a:2},
+{id:245,l:"intermediate",c:"Modal Verbs",q:"'You ___ be joking! This is impossible!' — Deduction:",o:["can","might","must","will"],a:2},
+{id:246,l:"intermediate",c:"Modal Verbs",q:"'___ I use your phone?' — Polite permission:",o:["Must","Shall","May","Will"],a:2},
+{id:247,l:"intermediate",c:"Modal Verbs",q:"'She ___ be in the office now; try calling her.' — Logical deduction:",o:["can","must","might","will"],a:1},
+{id:248,l:"advanced",c:"Modal Verbs",q:"'He <u>needn't have</u> brought food.' — This means:",o:["He didn't bring food and that was correct.","He brought food but it wasn't necessary.","He should have brought food.","He refused to bring food."],a:1},
+{id:249,l:"advanced",c:"Modal Verbs",q:"'<u>Dare</u> he say that again!' — 'dare' here is used as:",o:["Lexical verb","Semi-modal","Full modal","Auxiliary"],a:1},
+{id:250,l:"advanced",c:"Modal Verbs",q:"'You <u>had better</u> apologise.' — 'had better' expresses:",o:["Past ability","Suggestion/mild obligation","Permission","Possibility"],a:1},
+{id:251,l:"advanced",c:"Modal Verbs",q:"'He <u>would</u> spend hours reading as a child.' — This 'would' expresses:",o:["Conditional","Past habit","Possibility","Permission"],a:1},
+{id:252,l:"advanced",c:"Modal Verbs",q:"'She <u>could have won</u> the race.' — Meaning:",o:["She won the race.","She had the ability but didn't win.","She will win.","She must have won."],a:1},
+{id:253,l:"expert",c:"Modal Verbs",q:"'It <u>will</u> be raining in London now.' — This 'will' expresses:",o:["Prediction","Future certainty","Present deduction/assumption","Permission"],a:2},
+{id:254,l:"expert",c:"Modal Verbs",q:"'She <u>ought to have</u> arrived by now.' — This expresses:",o:["Obligation fulfilled","Unfulfilled expectation","Past permission","Deduction"],a:1},
+{id:255,l:"expert",c:"Modal Verbs",q:"Which modal is used for OFFERS in British English?",o:["Would","Will","Shall","Can"],a:2},
+{id:256,l:"expert",c:"Modal Verbs",q:"'<u>May</u> he rest in peace.' — This modal expresses:",o:["Permission","Possibility","Wish/Prayer","Condition"],a:2},
+{id:257,l:"expert",c:"Modal Verbs",q:"'You <u>can't have</u> seen him; he's in Paris.' — Meaning:",o:["Impossibility in the past","Past ability","Future possibility","Permission denied"],a:0},
+{id:258,l:"expert",c:"Modal Verbs",q:"Semi-modals (marginal modals) include:",o:["can, could, will","have to, be able to, be going to","shall, should, may","might, must, ought to"],a:1},
+{id:259,l:"expert",c:"Modal Verbs",q:"'<u>Used to</u>' vs '<u>would</u>': 'used to' CAN refer to:",o:["Past actions only","Past states AND past actions","Future actions","Present habits"],a:1},
+{id:260,l:"expert",c:"Modal Verbs",q:"'He <u>must</u> be the manager.' — This 'must' indicates:",o:["Obligation","Strong logical deduction","Permission","Certainty about future"],a:1},
+
+// ── 14. SUBJECT-VERB AGREEMENT (20) ──────────────────
+{id:261,l:"basic",c:"Subject-Verb Agreement",q:"'Neither of the boys ___ present.'",o:["are","were","is","have"],a:2},
+{id:262,l:"basic",c:"Subject-Verb Agreement",q:"'The news ___ shocking.'",o:["are","were","is","have been"],a:2},
+{id:263,l:"basic",c:"Subject-Verb Agreement",q:"'Mathematics ___ my favourite subject.'",o:["are","were","is","have"],a:2},
+{id:264,l:"intermediate",c:"Subject-Verb Agreement",q:"'The committee ___ divided on the issue.'",o:["are","is","were","have"],a:1},
+{id:265,l:"intermediate",c:"Subject-Verb Agreement",q:"'Either the teacher or the students ___ wrong.'",o:["is","are","was","has"],a:1},
+{id:266,l:"intermediate",c:"Subject-Verb Agreement",q:"'Each of the boys ___ been rewarded.'",o:["have","are","has","were"],a:2},
+{id:267,l:"intermediate",c:"Subject-Verb Agreement",q:"'A number of students ___ absent.'",o:["is","was","are","has"],a:2},
+{id:268,l:"intermediate",c:"Subject-Verb Agreement",q:"'The number of students ___ increasing.'",o:["are","were","is","have"],a:2},
+{id:269,l:"advanced",c:"Subject-Verb Agreement",q:"'Not only the students but also the teacher ___ surprised.'",o:["were","are","was","have been"],a:2},
+{id:270,l:"advanced",c:"Subject-Verb Agreement",q:"'The rich ___ not always happy.' — Correct verb:",o:["is","are","was","has been"],a:1},
+{id:271,l:"advanced",c:"Subject-Verb Agreement",q:"'Bread and butter ___ his only food.'",o:["are","were","is","have been"],a:2},
+{id:272,l:"advanced",c:"Subject-Verb Agreement",q:"'More than one student ___ failed.'",o:["have","are","has","were"],a:2},
+{id:273,l:"expert",c:"Subject-Verb Agreement",q:"'The jury ___ still out on their verdict.' (treating as unit)",o:["are","were","is","have been"],a:2},
+{id:274,l:"expert",c:"Subject-Verb Agreement",q:"'Neither she nor her friends ___ able to solve it.'",o:["was","is","has been","were"],a:3},
+{id:275,l:"expert",c:"Subject-Verb Agreement",q:"'Three-fourths of the wall ___ painted.'",o:["are","have been","is","were"],a:2},
+{id:276,l:"expert",c:"Subject-Verb Agreement",q:"'The group of tourists ___ lost in the mountains.'",o:["are","were","is","have"],a:2},
+{id:277,l:"expert",c:"Subject-Verb Agreement",q:"'Five miles ___ a long distance to walk.' (treating as single unit)",o:["are","were","is","have been"],a:2},
+{id:278,l:"expert",c:"Subject-Verb Agreement",q:"'Everyone except the boys ___ invited.'",o:["were","are","was","have been"],a:2},
+{id:279,l:"expert",c:"Subject-Verb Agreement",q:"'The police ___ investigating the case.' (police = plural noun)",o:["is","was","are","has"],a:2},
+{id:280,l:"expert",c:"Subject-Verb Agreement",q:"'Measles ___ a contagious disease.'",o:["are","were","is","have been"],a:2},
+
+// ── 15. DEGREES OF COMPARISON (20) ───────────────────
+{id:281,l:"basic",c:"Degrees of Comparison",q:"'He is the ___ student in the class.'",o:["most intelligent","more intelligent","intelligenter","intelligently"],a:0},
+{id:282,l:"basic",c:"Degrees of Comparison",q:"Comparative of 'good' is:",o:["gooder","more good","better","best"],a:2},
+{id:283,l:"basic",c:"Degrees of Comparison",q:"Superlative of 'bad' is:",o:["baddest","more bad","worse","worst"],a:3},
+{id:284,l:"intermediate",c:"Degrees of Comparison",q:"'She is ___ than her sister at painting.'",o:["more skillful","most skillful","skillfuller","much skillful"],a:0},
+{id:285,l:"intermediate",c:"Degrees of Comparison",q:"'This is the ___ I can do.'",o:["good","better","best","most good"],a:2},
+{id:286,l:"intermediate",c:"Degrees of Comparison",q:"Correct comparative: 'He is ___ than anyone in the team.'",o:["more taller","tallest","taller","most tall"],a:2},
+{id:287,l:"intermediate",c:"Degrees of Comparison",q:"'She is more beautiful than ___.' — Correct pronoun:",o:["I","me","my","myself"],a:0},
+{id:288,l:"advanced",c:"Degrees of Comparison",q:"Spot the error: 'She is more prettier than her friend.'",o:["more prettier — should be just 'prettier'","prettier — should be prettiest","should be 'more pretty'","No error"],a:0},
+{id:289,l:"advanced",c:"Degrees of Comparison",q:"'He is the stronger of the two.' — 'Stronger' here is:",o:["Superlative","Comparative (used for two)","Positive","Absolute"],a:1},
+{id:290,l:"advanced",c:"Degrees of Comparison",q:"'No other metal is as heavy as gold.' — Convert to superlative:",o:["Gold is the more heavy metal.","Gold is heaviest metal of all.","Gold is the heaviest of all metals.","Gold is heavy as no other metal."],a:2},
+{id:291,l:"advanced",c:"Degrees of Comparison",q:"'The higher you go, ___ it gets.'",o:["cold","colder","more cold","the colder"],a:3},
+{id:292,l:"expert",c:"Degrees of Comparison",q:"'She is the most unique person I have met.' — Error:",o:["most unique — 'unique' is absolute, cannot be compared","have met — should be 'met'","I — should be 'me'","No error"],a:0},
+{id:293,l:"expert",c:"Degrees of Comparison",q:"'He is <u>senior to</u> me.' — 'senior' uses 'to' because it is:",o:["A Latin comparative","An English comparative","An adjective taking 'than'","A superlative"],a:0},
+{id:294,l:"expert",c:"Degrees of Comparison",q:"'The more you practise, the better you get.' — This structure is called:",o:["Correlative comparative","Parallel comparative","Double comparative","Absolute comparative"],a:2},
+{id:295,l:"expert",c:"Degrees of Comparison",q:"Other Latin comparatives that take 'to' instead of 'than':",o:["bigger, smaller","superior, inferior, prior","older, newer","taller, shorter"],a:1},
+{id:296,l:"expert",c:"Degrees of Comparison",q:"'She is as tall as her brother, if not ___.'",o:["tall","taller","tallest","most tall"],a:1},
+{id:297,l:"expert",c:"Degrees of Comparison",q:"'He is <u>far</u> more intelligent than expected.' — 'far' is used to:",o:["Intensify the comparative","Form superlative","Weaken the adjective","Compare two things"],a:0},
+{id:298,l:"expert",c:"Degrees of Comparison",q:"'This is less difficult than that.' — Positive form:",o:["This is easy than that.","That is more difficult than this.","That is not as difficult as this.","Both B and C"],a:3},
+{id:299,l:"expert",c:"Degrees of Comparison",q:"'Older' vs 'elder': 'elder' is used for:",o:["Old buildings","People in the same family","All comparisons","Formal writing only"],a:1},
+{id:300,l:"expert",c:"Degrees of Comparison",q:"'The ___ the better.' — Correct form:",o:["cheap","cheaper","cheapest","most cheap"],a:1},
+
+// ── 16. GERUND & INFINITIVE (20) ─────────────────────
+{id:301,l:"basic",c:"Gerund & Infinitive",q:"'He enjoys ___.' — Gerund form of 'swim':",o:["to swim","swimming","swim","swam"],a:1},
+{id:302,l:"basic",c:"Gerund & Infinitive",q:"'She refused ___.' — Infinitive of 'help':",o:["helping","to help","helped","help"],a:1},
+{id:303,l:"intermediate",c:"Gerund & Infinitive",q:"'She is used to ___ early.' — Correct form:",o:["wake","wakes","waking","have woken"],a:2},
+{id:304,l:"intermediate",c:"Gerund & Infinitive",q:"'I regret ___ you that your application was rejected.' — Correct:",o:["to inform","informing","inform","having informed"],a:0},
+{id:305,l:"intermediate",c:"Gerund & Infinitive",q:"'He stopped ___ (gave up) after 10 years.' — Correct form:",o:["to smoke","smoking","smoke","smoked"],a:1},
+{id:306,l:"intermediate",c:"Gerund & Infinitive",q:"'She tried ___ the window but it was stuck.' — Meaning: attempted:",o:["opening","to open","open","opened"],a:1},
+{id:307,l:"intermediate",c:"Gerund & Infinitive",q:"'I remember ___ her at the party.' — Correct (past memory):",o:["to meet","meeting","meet","met"],a:1},
+{id:308,l:"advanced",c:"Gerund & Infinitive",q:"'He admitted ___ the money.' — Correct form:",o:["to take","taking","take","having taken"],a:1},
+{id:309,l:"advanced",c:"Gerund & Infinitive",q:"'I look forward to ___ you again.' — Correct:",o:["see","seen","seeing","have seen"],a:2},
+{id:310,l:"advanced",c:"Gerund & Infinitive",q:"'It is no use ___ over spilt milk.'",o:["to cry","crying","cry","cried"],a:1},
+{id:311,l:"advanced",c:"Gerund & Infinitive",q:"'The doctor advised him ___ smoking immediately.'",o:["to stop","stopping","stop","having stopped"],a:0},
+{id:312,l:"advanced",c:"Gerund & Infinitive",q:"'She made him ___ the truth.' — After 'make' (causative):",o:["to tell","telling","tell","told"],a:2},
+{id:313,l:"expert",c:"Gerund & Infinitive",q:"'I would rather ___ than beg.' — Correct form:",o:["to starve","starving","starve","starved"],a:2},
+{id:314,l:"expert",c:"Gerund & Infinitive",q:"Verbs that can take BOTH gerund and infinitive with DIFFERENT meanings: 'stop', 'remember', ___",o:["like","try/regret","begin","prefer"],a:1},
+{id:315,l:"expert",c:"Gerund & Infinitive",q:"'She was heard ___ in her room.' — Correct form:",o:["to sing","singing","sing","sang"],a:1},
+{id:316,l:"expert",c:"Gerund & Infinitive",q:"'___ is easier said than done.' — 'this' refers to:",o:["An infinitive","A gerund as subject","An adjective clause","A noun phrase"],a:1},
+{id:317,l:"expert",c:"Gerund & Infinitive",q:"'He is afraid of ___ the exam.' — Correct form:",o:["to fail","fail","failing","failed"],a:2},
+{id:318,l:"expert",c:"Gerund & Infinitive",q:"'I can't help ___ when he says that.' — Correct form:",o:["to laugh","laughing","laugh","laughed"],a:1},
+{id:319,l:"expert",c:"Gerund & Infinitive",q:"'Having finished the work, she ___.' — The participle construction refers to:",o:["Simultaneous action","Action before the main verb","Future action","Hypothetical action"],a:1},
+{id:320,l:"expert",c:"Gerund & Infinitive",q:"'It was kind of her ___ us.' — Correct infinitive:",o:["helping","help","to help","having helped"],a:2},
+
+// ── 17. PHRASAL VERBS (20) ─────────────────────────────
+{id:321,l:"basic",c:"Phrasal Verbs",q:"'She gave ___ smoking last year.' — Correct particle:",o:["in","up","out","on"],a:1},
+{id:322,l:"basic",c:"Phrasal Verbs",q:"'He called ___ the meeting.' — Meaning: cancelled:",o:["off","on","out","in"],a:0},
+{id:323,l:"intermediate",c:"Phrasal Verbs",q:"'The plan finally ___ after months of effort.' — 'fell ___':",o:["in","into","through","apart"],a:2},
+{id:324,l:"intermediate",c:"Phrasal Verbs",q:"'The committee ___ the proposal.' — 'turned ___' (rejected):",o:["down","up","over","in"],a:0},
+{id:325,l:"intermediate",c:"Phrasal Verbs",q:"'She ___ her mother.' — 'takes ___' (resembles):",o:["on","after","over","up"],a:1},
+{id:326,l:"intermediate",c:"Phrasal Verbs",q:"'He ___ the contract carefully.' — 'went ___' (read carefully):",o:["over","through","into","across"],a:0},
+{id:327,l:"intermediate",c:"Phrasal Verbs",q:"'The fire ___ suddenly.' — 'broke ___':",o:["out","in","down","up"],a:0},
+{id:328,l:"advanced",c:"Phrasal Verbs",q:"'She ___ for a job at the firm.' — 'put ___' (applied):",o:["up","in","on","out"],a:1},
+{id:329,l:"advanced",c:"Phrasal Verbs",q:"'He ___ his father's business.' — 'took ___' (inherited/continued):",o:["after","over","up","on"],a:1},
+{id:330,l:"advanced",c:"Phrasal Verbs",q:"'The meeting was ___ to next week.' — 'put ___' (postponed):",o:["off","on","up","over"],a:0},
+{id:331,l:"advanced",c:"Phrasal Verbs",q:"'She ___ her old friends after years.' — 'ran ___' (met unexpectedly):",o:["over","into","across","by"],a:1},
+{id:332,l:"advanced",c:"Phrasal Verbs",q:"'He found it hard to ___ the loss of his dog.' — 'get ___':",o:["over","through","by","across"],a:0},
+{id:333,l:"expert",c:"Phrasal Verbs",q:"'The deal ___ at the last minute.' — 'fell ___':",o:["out","through","over","apart"],a:1},
+{id:334,l:"expert",c:"Phrasal Verbs",q:"'She ___ the challenge bravely.' — 'faced ___':",o:["out","up to","over","into"],a:1},
+{id:335,l:"expert",c:"Phrasal Verbs",q:"'He ___ the courage to speak.' — 'mustered ___':",o:["out","up","on","in"],a:1},
+{id:336,l:"expert",c:"Phrasal Verbs",q:"'The secret finally ___ .' — 'came ___' (became known):",o:["out","over","up","across"],a:0},
+{id:337,l:"expert",c:"Phrasal Verbs",q:"'She ___ everyone with her knowledge.' — 'showed ___' (impressed):",o:["up","off","out","over"],a:1},
+{id:338,l:"expert",c:"Phrasal Verbs",q:"'He ___ his old habits with difficulty.' — 'broke ___':",o:["out","away from","up","off"],a:3},
+{id:339,l:"expert",c:"Phrasal Verbs",q:"An INSEPARABLE phrasal verb is one where:",o:["The particle can go on either side of the object","The particle cannot be separated from the verb","The object always comes first","The particle changes meaning with position"],a:1},
+{id:340,l:"expert",c:"Phrasal Verbs",q:"'She put the report ___ until Friday.' — Correct particle (delayed):",o:["off","aside","away","back"],a:0},
+
+// ── 18. VOCABULARY (20) ───────────────────────────────
+{id:341,l:"basic",c:"Vocabulary",q:"Antonym of 'Ancient':",o:["Old","Modern","Antique","Historic"],a:1},
+{id:342,l:"intermediate",c:"Vocabulary",q:"Synonym of 'Benevolent':",o:["Cruel","Kind","Angry","Jealous"],a:1},
+{id:343,l:"intermediate",c:"Vocabulary",q:"'Verbose' means:",o:["Silent","Brief","Using too many words","Angry"],a:2},
+{id:344,l:"intermediate",c:"Vocabulary",q:"Antonym of 'Loquacious':",o:["Talkative","Garrulous","Taciturn","Verbose"],a:2},
+{id:345,l:"intermediate",c:"Vocabulary",q:"'Ambiguous' means:",o:["Clear","Having one meaning","Open to more than one interpretation","Definite"],a:2},
+{id:346,l:"advanced",c:"Vocabulary",q:"Antonym of 'Obstinate':",o:["Stubborn","Determined","Flexible","Rigid"],a:2},
+{id:347,l:"advanced",c:"Vocabulary",q:"'Perspicacious' means:",o:["Dull","Unclear","Having a ready insight","Very tall"],a:2},
+{id:348,l:"advanced",c:"Vocabulary",q:"'Ubiquitous' means:",o:["Rare","Unusual","Found everywhere","Beautiful"],a:2},
+{id:349,l:"advanced",c:"Vocabulary",q:"'Ephemeral' means:",o:["Lasting forever","Short-lived","Very old","Important"],a:1},
+{id:350,l:"advanced",c:"Vocabulary",q:"Synonym of 'Acrimony':",o:["Sweetness","Bitterness","Kindness","Happiness"],a:1},
+{id:351,l:"advanced",c:"Vocabulary",q:"'Sycophant' means:",o:["A genuine admirer","A person who flatters powerful people insincerely","An enemy","An honest person"],a:1},
+{id:352,l:"advanced",c:"Vocabulary",q:"'Pusillanimous' means:",o:["Very brave","Showing a lack of courage","Very intelligent","Full of energy"],a:1},
+{id:353,l:"advanced",c:"Vocabulary",q:"'Mellifluous' means:",o:["Bitter","Having unpleasant taste","Pleasant and musical to hear","Very harsh"],a:2},
+{id:354,l:"expert",c:"Vocabulary",q:"'Recondite' means:",o:["Common","Not known by many; obscure","Obvious","Frequent"],a:1},
+{id:355,l:"expert",c:"Vocabulary",q:"'Egregious' means:",o:["Exceptional in a good way","Outstandingly bad/shocking","Very small","Generous"],a:1},
+{id:356,l:"expert",c:"Vocabulary",q:"'Laconic' means:",o:["Very talkative","Using very few words","Loud","Confused"],a:1},
+{id:357,l:"expert",c:"Vocabulary",q:"'Truculent' means:",o:["Peaceful","Eager to argue or fight","Generous","Calm"],a:1},
+{id:358,l:"expert",c:"Vocabulary",q:"'Solipsism' in philosophy means belief that:",o:["Only others exist","Only the self exists and is knowable","God exists","Nothing exists"],a:1},
+{id:359,l:"expert",c:"Vocabulary",q:"'Equivocate' means:",o:["To speak clearly","To use ambiguous language to avoid commitment","To lie directly","To remain silent"],a:1},
+{id:360,l:"expert",c:"Vocabulary",q:"'Peripatetic' means:",o:["Stationary","Travelling from place to place","Very fast","Slow and deliberate"],a:1},
+
+// ── 19. IDIOMS & PHRASES (20) ─────────────────────────
+{id:361,l:"basic",c:"Idioms & Phrases",q:"'To bite the bullet' means:",o:["To eat slowly","To endure a painful situation bravely","To shoot someone","To be afraid"],a:1},
+{id:362,l:"basic",c:"Idioms & Phrases",q:"'Break a leg' means:",o:["Get injured","Good luck","Start running","Be careful"],a:1},
+{id:363,l:"intermediate",c:"Idioms & Phrases",q:"'Burning the midnight oil' means:",o:["Setting fire to oil","Working or studying late","Wasting oil","Going to sleep early"],a:1},
+{id:364,l:"intermediate",c:"Idioms & Phrases",q:"'Hit the nail on the head' means:",o:["To hammer something","To be exactly right","To do something wrong","To miss the point"],a:1},
+{id:365,l:"intermediate",c:"Idioms & Phrases",q:"'To have a chip on one's shoulder' means:",o:["To carry something heavy","To feel resentful about past injustice","To be happy","To be careless"],a:1},
+{id:366,l:"intermediate",c:"Idioms & Phrases",q:"'To bite the hand that feeds you' means:",o:["To be grateful","To harm someone who helps you","To eat greedily","To be helpful"],a:1},
+{id:367,l:"intermediate",c:"Idioms & Phrases",q:"'A storm in a teacup' means:",o:["Bad weather","A lot of fuss about something trivial","A dangerous situation","A small cup"],a:1},
+{id:368,l:"advanced",c:"Idioms & Phrases",q:"'To add fuel to the fire' means:",o:["To help solve a problem","To make a bad situation worse","To start a fire","To be helpful"],a:1},
+{id:369,l:"advanced",c:"Idioms & Phrases",q:"'At the drop of a hat' means:",o:["Very slowly","Without any hesitation","With great difficulty","After much thought"],a:1},
+{id:370,l:"advanced",c:"Idioms & Phrases",q:"'To cry over spilt milk' means:",o:["To feel happy","To worry about something that cannot be undone","To be grateful","To celebrate"],a:1},
+{id:371,l:"advanced",c:"Idioms & Phrases",q:"'The ball is in your court' means:",o:["A sports term only","It is your turn to take action","You have lost the game","It is not your problem"],a:1},
+{id:372,l:"advanced",c:"Idioms & Phrases",q:"'To bury the hatchet' means:",o:["To dig a grave","To make peace after a conflict","To start a war","To hide something"],a:1},
+{id:373,l:"expert",c:"Idioms & Phrases",q:"'Once in a blue moon' means:",o:["Very often","During a full moon","Very rarely","Every night"],a:2},
+{id:374,l:"expert",c:"Idioms & Phrases",q:"'Bite off more than you can chew' means:",o:["To eat too much","To take on more responsibility than you can handle","To be greedy about food","To speak with food in your mouth"],a:1},
+{id:375,l:"expert",c:"Idioms & Phrases",q:"'Cut corners' means:",o:["To be very precise","To do something in the easiest or cheapest way, sacrificing quality","To save time by working harder","To avoid a difficult situation"],a:1},
+{id:376,l:"expert",c:"Idioms & Phrases",q:"'The elephant in the room' refers to:",o:["A large problem being ignored","An actual elephant","A small problem","An obvious solution"],a:0},
+{id:377,l:"expert",c:"Idioms & Phrases",q:"'To sit on the fence' means:",o:["To be neutral/not take sides","To be imprisoned","To take a strong stand","To be afraid of heights"],a:0},
+{id:378,l:"expert",c:"Idioms & Phrases",q:"'Spill the beans' means:",o:["To cook poorly","To reveal a secret","To be messy","To be generous"],a:1},
+{id:379,l:"expert",c:"Idioms & Phrases",q:"'Bite the dust' means:",o:["To eat on the ground","To fail or die","To clean the floor","To be dusty"],a:1},
+{id:380,l:"expert",c:"Idioms & Phrases",q:"'A blessing in disguise' means:",o:["A hidden curse","Something good that initially seemed bad","A disguised person","A religious blessing"],a:1},
+
+// ── 20. ONE WORD SUBSTITUTION (20) ───────────────────
+{id:381,l:"intermediate",c:"One Word Substitution",q:"'One who knows everything':",o:["Omnipotent","Omniscient","Omnivore","Omnipresent"],a:1},
+{id:382,l:"intermediate",c:"One Word Substitution",q:"'A place where dead bodies are buried':",o:["Crematorium","Aquarium","Cemetery","Mortuary"],a:2},
+{id:383,l:"intermediate",c:"One Word Substitution",q:"'One who walks in sleep':",o:["Narcissist","Somnambulist","Insomniac","Hypnotist"],a:1},
+{id:384,l:"intermediate",c:"One Word Substitution",q:"'Fear of water':",o:["Claustrophobia","Hydrophobia","Acrophobia","Agoraphobia"],a:1},
+{id:385,l:"intermediate",c:"One Word Substitution",q:"'A doctor who treats children':",o:["Cardiologist","Dermatologist","Paediatrician","Neurologist"],a:2},
+{id:386,l:"advanced",c:"One Word Substitution",q:"'The practice of having more than one husband':",o:["Polygamy","Polyandry","Bigamy","Monogamy"],a:1},
+{id:387,l:"advanced",c:"One Word Substitution",q:"'One who believes in no god':",o:["Agnostic","Theist","Atheist","Deist"],a:2},
+{id:388,l:"advanced",c:"One Word Substitution",q:"'Words inscribed on a tombstone':",o:["Epitaph","Elegy","Eulogy","Epigram"],a:0},
+{id:389,l:"advanced",c:"One Word Substitution",q:"'A person who pretends to be what they are not':",o:["Cynic","Hypocrite","Egoist","Introvert"],a:1},
+{id:390,l:"advanced",c:"One Word Substitution",q:"'Unable to be corrected or reformed':",o:["Indelible","Incorrigible","Insoluble","Ineffable"],a:1},
+{id:391,l:"advanced",c:"One Word Substitution",q:"'A speech given to oneself':",o:["Dialogue","Monologue","Soliloquy","Epilogue"],a:2},
+{id:392,l:"advanced",c:"One Word Substitution",q:"'Government by the people':",o:["Autocracy","Oligarchy","Democracy","Theocracy"],a:2},
+{id:393,l:"expert",c:"One Word Substitution",q:"'That which cannot be expressed in words':",o:["Indelible","Ineffable","Inaudible","Inexplicable"],a:1},
+{id:394,l:"expert",c:"One Word Substitution",q:"'One who compiles a dictionary':",o:["Bibliophile","Lexicographer","Calligrapher","Cartographer"],a:1},
+{id:395,l:"expert",c:"One Word Substitution",q:"'Fear of being enclosed in small spaces':",o:["Claustrophobia","Acrophobia","Agoraphobia","Xenophobia"],a:0},
+{id:396,l:"expert",c:"One Word Substitution",q:"'A lover of books':",o:["Bibliophile","Lexicographer","Bibliographer","Philatelist"],a:0},
+{id:397,l:"expert",c:"One Word Substitution",q:"'The study of coins':",o:["Philately","Numismatics","Archaeology","Seismology"],a:1},
+{id:398,l:"expert",c:"One Word Substitution",q:"'One who is all-powerful':",o:["Omniscient","Omnivorous","Omnipotent","Omnipresent"],a:2},
+{id:399,l:"expert",c:"One Word Substitution",q:"'A person appointed to settle a dispute':",o:["Plaintiff","Defendant","Arbitrator","Prosecutor"],a:2},
+{id:400,l:"expert",c:"One Word Substitution",q:"'Writing that is difficult or impossible to read':",o:["Ambiguous","Illegible","Incoherent","Obscure"],a:1},
+
+// ── 21. FIGURES OF SPEECH (20) ────────────────────────
+{id:401,l:"intermediate",c:"Figures of Speech",q:"'Peter Piper picked a peck of pickled peppers.' — Figure of speech:",o:["Assonance","Consonance","Alliteration","Onomatopoeia"],a:2},
+{id:402,l:"intermediate",c:"Figures of Speech",q:"'The stars danced in the night sky.' — Figure:",o:["Simile","Metaphor","Personification","Hyperbole"],a:2},
+{id:403,l:"intermediate",c:"Figures of Speech",q:"'Life is a journey.' — Figure:",o:["Simile","Metaphor","Personification","Allegory"],a:1},
+{id:404,l:"intermediate",c:"Figures of Speech",q:"'I've told you a million times.' — Figure:",o:["Metaphor","Irony","Hyperbole","Litotes"],a:2},
+{id:405,l:"intermediate",c:"Figures of Speech",q:"'As brave as a lion.' — Figure:",o:["Metaphor","Simile","Personification","Irony"],a:1},
+{id:406,l:"advanced",c:"Figures of Speech",q:"'The pen is mightier than the sword.' — Figure:",o:["Simile","Metaphor","Personification","Paradox"],a:1},
+{id:407,l:"advanced",c:"Figures of Speech",q:"'Fair is foul, and foul is fair.' — Figure:",o:["Oxymoron","Paradox","Chiasmus","Antithesis"],a:1},
+{id:408,l:"advanced",c:"Figures of Speech",q:"'The buzz of bees' — The word 'buzz' is an example of:",o:["Alliteration","Assonance","Onomatopoeia","Consonance"],a:2},
+{id:409,l:"advanced",c:"Figures of Speech",q:"'She has a heart of stone.' — Figure:",o:["Simile","Metaphor","Personification","Hyperbole"],a:1},
+{id:410,l:"advanced",c:"Figures of Speech",q:"'It was the best of times, it was the worst of times.' — Figure:",o:["Anaphora","Antithesis","Oxymoron","Paradox"],a:1},
+{id:411,l:"advanced",c:"Figures of Speech",q:"Repetition of the same word at the START of successive clauses:",o:["Epistrophe","Anaphora","Chiasmus","Asyndeton"],a:1},
+{id:412,l:"advanced",c:"Figures of Speech",q:"'I came, I saw, I conquered.' — Figure (deliberate omission of conjunctions):",o:["Polysyndeton","Asyndeton","Anaphora","Epistrophe"],a:1},
+{id:413,l:"expert",c:"Figures of Speech",q:"'O death, where is thy sting?' — Addressing an absent/dead person/abstract idea:",o:["Apostrophe","Personification","Irony","Paradox"],a:0},
+{id:414,l:"expert",c:"Figures of Speech",q:"'Not the worst student in the class' (meaning quite good) — Figure:",o:["Irony","Litotes (understatement with negation)","Hyperbole","Euphemism"],a:1},
+{id:415,l:"expert",c:"Figures of Speech",q:"'She sells sea shells on the sea shore.' — Also called:",o:["Alliteration","Tongue twister using sibilance","Both A and B","Assonance"],a:2},
+{id:416,l:"expert",c:"Figures of Speech",q:"'To be or not to be, that is the question.' — Rhetorical device:",o:["Anaphora","Antithesis","Both A and B","Chiasmus"],a:1},
+{id:417,l:"expert",c:"Figures of Speech",q:"A SYNECDOCHE uses a part to represent the whole. Example:",o:["She has a golden heart.","All hands on deck! (hands = sailors)","The pen is mightier than the sword.","He is a lion in battle."],a:1},
+{id:418,l:"expert",c:"Figures of Speech",q:"'He is the Napoleon of crime.' — This is a:",o:["Simile","Allegory","Allusion","Personification"],a:2},
+{id:419,l:"expert",c:"Figures of Speech",q:"'She has the patience of a saint.' — Figure:",o:["Metaphor","Simile","Personification","Irony"],a:1},
+{id:420,l:"expert",c:"Figures of Speech",q:"'Eat your heart out!' — Primarily an example of:",o:["Personification","Idiom/Catachresis","Simile","Alliteration"],a:1},
+
+// ── 22. SENTENCE CORRECTION (20) ─────────────────────
+{id:421,l:"basic",c:"Sentence Correction",q:"Spot the error: 'He don't know the answer.'",o:["He","don't — should be 'doesn't'","know","the answer"],a:1},
+{id:422,l:"basic",c:"Sentence Correction",q:"Correct: 'She is more prettier than her friend.'",o:["more prettier → prettier","prettier → prettiest","friend → friends","No error"],a:0},
+{id:423,l:"basic",c:"Sentence Correction",q:"Spot the error: 'She did not went to school.'",o:["She","did not","went — should be 'go'","to school"],a:2},
+{id:424,l:"intermediate",c:"Sentence Correction",q:"Spot the error: 'I have seen him yesterday.'",o:["I","have seen — should be 'saw'","him","yesterday"],a:1},
+{id:425,l:"intermediate",c:"Sentence Correction",q:"Which is correct?",o:["She is too weak to not lift it.","She is too weak to lift it.","She is so weak to lift it.","She is very weak for lifting it."],a:1},
+{id:426,l:"intermediate",c:"Sentence Correction",q:"Spot the error: 'The scenery of Switzerland are beautiful.'",o:["The scenery","of Switzerland","are — should be 'is'","beautiful"],a:2},
+{id:427,l:"intermediate",c:"Sentence Correction",q:"'He is one of those who <u>believes</u> in hard work.' — Error?",o:["one of those","who","believes — should be 'believe'","in hard work"],a:2},
+{id:428,l:"advanced",c:"Sentence Correction",q:"'Walking down the street, the trees looked beautiful.' — Error:",o:["Walking down the street (dangling modifier)","the trees","looked beautiful","No error"],a:0},
+{id:429,l:"advanced",c:"Sentence Correction",q:"Spot the error: 'Between you and I, this is a secret.'",o:["Between you and I — 'I' should be 'me'","this is","a secret","No error"],a:0},
+{id:430,l:"advanced",c:"Sentence Correction",q:"'Hardly he had arrived when trouble started.' — Error:",o:["Hardly he had — 'had he' (inversion required)","arrived","when trouble","started"],a:0},
+{id:431,l:"advanced",c:"Sentence Correction",q:"Which sentence is CORRECT?",o:["The cattle is grazing in the field.","The cattle are grazing in the field.","A cattle is grazing.","Cattle is in the field."],a:1},
+{id:432,l:"advanced",c:"Sentence Correction",q:"Spot the error: 'He is the most unique artist I have seen.'",o:["He is","the most unique — 'unique' is absolute","artist","I have seen"],a:1},
+{id:433,l:"expert",c:"Sentence Correction",q:"'Neither of them have done their homework.' — Error:",o:["Neither of them","have — should be 'has'","done their","homework"],a:1},
+{id:434,l:"expert",c:"Sentence Correction",q:"'She suggested me to apply for the job.' — Error:",o:["She suggested me — 'suggested to me' OR 'suggested that I apply'","to apply","for the job","No error"],a:0},
+{id:435,l:"expert",c:"Sentence Correction",q:"'The data shows that pollution is increasing.' — Error?",o:["The data shows — 'data' is plural, should be 'show'","that pollution","is increasing","No error (both acceptable now)"],a:3},
+{id:436,l:"expert",c:"Sentence Correction",q:"'I and my friend went to the market.' — Error:",o:["I and my friend — should be 'My friend and I'","went to","the market","No error"],a:0},
+{id:437,l:"expert",c:"Sentence Correction",q:"'She is too tired that she cannot work.' — Error:",o:["too tired — 'too...to' construction; should be 'too tired to work'","that she","cannot work","No error"],a:0},
+{id:438,l:"expert",c:"Sentence Correction",q:"'He resembles to his father.' — Error:",o:["He resembles","to — 'resemble' does not take a preposition","his father","No error"],a:1},
+{id:439,l:"expert",c:"Sentence Correction",q:"'The police has arrested three suspects.' — Error:",o:["The police","has — should be 'have' (police = plural noun)","arrested","No error"],a:1},
+{id:440,l:"expert",c:"Sentence Correction",q:"'She would have come if you would have invited her.' — Error:",o:["She would have come","if you would have invited — should be 'had invited'","her","No error"],a:1},
+
+// ── 23. PUNCTUATION (20) ──────────────────────────────
+{id:441,l:"basic",c:"Punctuation",q:"Which sentence is punctuated CORRECTLY?",o:["She said, I am coming.","She said, \"I am coming.\"","She said: I am coming.","She said I am coming."],a:1},
+{id:442,l:"basic",c:"Punctuation",q:"An apostrophe is used in:",o:["Plural nouns","Possessive nouns and contractions","Adjectives","Conjunctions"],a:1},
+{id:443,l:"intermediate",c:"Punctuation",q:"Which correctly uses a SEMICOLON?",o:["I went to the store; and bought milk.","She loves painting; he prefers music.","She said; I'll be back soon.","He was tired; but happy."],a:1},
+{id:444,l:"intermediate",c:"Punctuation",q:"'Its' (possessive) vs 'It's' (it is) — Which is correct?",o:["The dog wagged it's tail.","It's a beautiful day.","The team lost it's match.","Its going to rain."],a:1},
+{id:445,l:"intermediate",c:"Punctuation",q:"A COLON is used to:",o:["Join two sentences","Introduce a list or explanation","Show possession","Separate items in a simple list"],a:1},
+{id:446,l:"intermediate",c:"Punctuation",q:"'My sister — who lives in Delhi — is a doctor.' — The dashes here are used for:",o:["Parenthetical emphasis","Showing a range","Connecting compound words","Indicating pause"],a:0},
+{id:447,l:"advanced",c:"Punctuation",q:"Which sentence uses commas CORRECTLY?",o:["She bought apples, oranges and bananas, in the market.","She bought apples, oranges, and bananas.","She, bought apples oranges and bananas.","She bought, apples, oranges, and bananas."],a:1},
+{id:448,l:"advanced",c:"Punctuation",q:"An ELLIPSIS (...) is used to show:",o:["A list","Omission of words or trailing thoughts","Strong emotion","Possession"],a:1},
+{id:449,l:"advanced",c:"Punctuation",q:"'Well known' (before a noun) should be written as:",o:["well known","well-known","Wellknown","Well Known"],a:1},
+{id:450,l:"advanced",c:"Punctuation",q:"Which is correctly punctuated as a QUESTION TAG?",o:["She is coming, isn't she.","She is coming isn't she?","She is coming, isn't she?","She is coming; isn't she?"],a:2},
+{id:451,l:"advanced",c:"Punctuation",q:"'Dear Sir/Madam, I am writing to...' — The comma after the salutation in FORMAL letters:",o:["Is required","Is optional in modern usage","Is incorrect","Should be a colon in British English"],a:3},
+{id:452,l:"expert",c:"Punctuation",q:"'The students' books' (books belonging to multiple students) — Correct apostrophe position:",o:["The student's books","The students' books","The students books'","The students book's"],a:1},
+{id:453,l:"expert",c:"Punctuation",q:"Brackets () vs Square brackets [] — Square brackets are used for:",o:["Parenthetical remarks","Editorial additions/clarifications in quoted text","Both equally","Personal comments"],a:1},
+{id:454,l:"expert",c:"Punctuation",q:"'She said, \"I told him, \\\"Stop!\\\"\"' — This shows:",o:["Incorrect punctuation","Nested quotation marks (double then single or vice versa)","Wrong use of speech marks","Incomplete sentence"],a:1},
+{id:455,l:"expert",c:"Punctuation",q:"An OXFORD COMMA (serial comma) is:",o:["Comma before 'and' in a list of three or more","Comma after the opening of a letter","Comma before a subordinate clause","Comma in a compound sentence"],a:0},
+{id:456,l:"expert",c:"Punctuation",q:"'Pre-2020 data' — The hyphen here is used for:",o:["Joining prefix to a date/number","Showing a range","Breaking a word","Joining compound adjective before noun"],a:0},
+{id:457,l:"expert",c:"Punctuation",q:"An EN-DASH (–) is typically used for:",o:["Compound words","Ranges (e.g. 2010–2020) and connections","Parenthetical phrases","Contractions"],a:1},
+{id:458,l:"expert",c:"Punctuation",q:"In British English, punctuation in relation to closing quotation marks:",o:["Always inside","Always outside","Depends on sentence structure (logical punctuation)","Before the mark"],a:2},
+{id:459,l:"expert",c:"Punctuation",q:"'Semicolons can replace conjunctions like ___ in compound sentences.'",o:["although, because","and, but, or","nor, yet","since, when"],a:1},
+{id:460,l:"expert",c:"Punctuation",q:"Which is a correctly punctuated COMPLEX sentence?",o:["Although she was tired but she continued.","Although she was tired she continued.","Although she was tired, she continued.","She continued although, she was tired."],a:2},
+
+// ── 24. ADJECTIVES (20) ───────────────────────────────
+{id:461,l:"basic",c:"Adjectives",q:"Which is a DESCRIPTIVE adjective?",o:["Three","Some","Beautiful","Which"],a:2},
+{id:462,l:"basic",c:"Adjectives",q:"'___ students passed the exam.' — Numeral adjective:",o:["All","Twenty","Some","Many"],a:1},
+{id:463,l:"intermediate",c:"Adjectives",q:"'This is ___ useful book.' — Correct article+adjective:",o:["a","an","the","—"],a:0},
+{id:464,l:"intermediate",c:"Adjectives",q:"'She is a ___ girl.' — Which adjective is NOT suitable?",o:["beautiful","clever","quickly","kind"],a:2},
+{id:465,l:"intermediate",c:"Adjectives",q:"'He has ___ money than I expected.'",o:["fewer","more less","less","lesser"],a:2},
+{id:466,l:"intermediate",c:"Adjectives",q:"Identify the PREDICATIVE adjective: 'The soup is <u>hot</u>.'",o:["The","soup","is","hot"],a:3},
+{id:467,l:"advanced",c:"Adjectives",q:"'She is a <u>fast</u> runner.' — 'fast' here is:",o:["Adverb","Attributive adjective","Predicative adjective","Verb"],a:1},
+{id:468,l:"advanced",c:"Adjectives",q:"Which adjective is ABSOLUTE (cannot be compared)?",o:["Beautiful","Good","Perfect","Tall"],a:2},
+{id:469,l:"advanced",c:"Adjectives",q:"'The sick, the poor, and the elderly need support.' — These are:",o:["Nouns","Adjectives used as nouns","Pronouns","Abstract nouns"],a:1},
+{id:470,l:"advanced",c:"Adjectives",q:"Order of adjectives: 'A ___ Italian sports car' — Correct order:",o:["red, beautiful","beautiful, red","Italian, beautiful red","beautiful red Italian"],a:3},
+{id:471,l:"expert",c:"Adjectives",q:"Correct order of adjectives in English is generally:",o:["Opinion-Size-Age-Shape-Colour-Origin-Material-Purpose","Colour-Size-Age-Opinion-Material-Origin-Shape-Purpose","Size-Colour-Opinion-Age-Shape-Origin-Material-Purpose","Age-Opinion-Colour-Size-Shape-Material-Origin-Purpose"],a:0},
+{id:472,l:"expert",c:"Adjectives",q:"'The old grey stone wall' — Adjective order correctly demonstrates:",o:["Colour before material","Age before colour before material","Material before colour","Size before age"],a:1},
+{id:473,l:"expert",c:"Adjectives",q:"'An alleged criminal' — 'alleged' is a/an ___ adjective (meaning accusation, not proven):",o:["Evaluative","Non-gradable / classifying","Absolute","Predicative"],a:1},
+{id:474,l:"expert",c:"Adjectives",q:"A 'stative adjective' is one that:",o:["Describes a temporary state","Describes a permanent or inherent quality","Can be used in comparative form","Always follows a linking verb"],a:1},
+{id:475,l:"expert",c:"Adjectives",q:"'The mere thought terrifies me.' — 'mere' is a/an:",o:["Emphasising adjective","Intensifier adjective","Limiting/restrictive adjective","Compound adjective"],a:2},
+{id:476,l:"expert",c:"Adjectives",q:"'A certain person called for you.' — 'certain' is:",o:["Predeterminer","Adjective meaning specific but unnamed","Determiner meaning sure","Pronoun"],a:1},
+{id:477,l:"expert",c:"Adjectives",q:"'He is <u>utter</u>ly exhausted.' — Root adjective type:",o:["Gradable","Non-gradable/Extreme","Classifying","Comparative"],a:1},
+{id:478,l:"expert",c:"Adjectives",q:"'She wore a green, silk, Chinese dress.' — What rule does the order follow?",o:["Opinion, Material, Origin","Colour, Material, Origin","Material, Colour, Origin","Origin, Material, Colour"],a:1},
+{id:479,l:"expert",c:"Adjectives",q:"Adjectives ending in '-ed' (e.g. 'bored') typically describe:",o:["The cause of the feeling","The person experiencing the feeling","Both equally","Things and actions"],a:1},
+{id:480,l:"expert",c:"Adjectives",q:"Adjectives ending in '-ing' (e.g. 'boring') typically describe:",o:["The person experiencing the feeling","The cause/source of the feeling","Both equally","Permanent qualities"],a:1},
+
+// ── 25. ADVERBS (20) ──────────────────────────────────
+{id:481,l:"basic",c:"Adverbs",q:"'He ran <u>quickly</u>.' — 'quickly' modifies:",o:["He","ran","quickly","(nothing)"],a:1},
+{id:482,l:"basic",c:"Adverbs",q:"Which is an adverb of FREQUENCY?",o:["Quickly","Always","Here","Soon"],a:1},
+{id:483,l:"intermediate",c:"Adverbs",q:"'She is <u>very</u> tired.' — 'very' is an adverb of:",o:["Manner","Frequency","Degree/Intensity","Place"],a:2},
+{id:484,l:"intermediate",c:"Adverbs",q:"'She speaks English <u>well</u>.' — 'well' modifies:",o:["She","English","speaks","well"],a:2},
+{id:485,l:"intermediate",c:"Adverbs",q:"'He <u>almost</u> missed the bus.' — Type of adverb:",o:["Time","Place","Degree","Manner"],a:2},
+{id:486,l:"intermediate",c:"Adverbs",q:"Identify the adverb: 'She is a <u>fast</u> runner and runs <u>fast</u>.'",o:["First 'fast' only","Second 'fast' only","Both 'fast' (first = adjective, second = adverb)","Neither"],a:2},
+{id:487,l:"advanced",c:"Adverbs",q:"'Fortunately, she escaped.' — This is a/an ___ adverb.",o:["Sentence adverb (modifies whole clause)","Manner adverb","Degree adverb","Frequency adverb"],a:0},
+{id:488,l:"advanced",c:"Adverbs",q:"'She hardly ever comes here.' — 'hardly' is a:",o:["Negative adverb","Frequency adverb","Both A and B (negative frequency)","Degree adverb"],a:2},
+{id:489,l:"advanced",c:"Adverbs",q:"'He read the report <u>thoroughly</u>.' — Position of adverb of manner is typically:",o:["Before the subject","After the auxiliary only","After the verb/object","At the start of sentence only"],a:2},
+{id:490,l:"advanced",c:"Adverbs",q:"'Only she knows the truth.' vs 'She knows only the truth.' — The position of 'only' changes:",o:["Nothing","The emphasis/meaning","The verb tense","The subject"],a:1},
+{id:491,l:"expert",c:"Adverbs",q:"'He works hard and is <u>hardly</u> ever late.' — 'Hardly' here means:",o:["In a hard manner","Almost not / scarcely","With difficulty","Very much"],a:1},
+{id:492,l:"expert",c:"Adverbs",q:"'She is <u>quite</u> good at tennis.' vs 'She is <u>quite</u> exhausted.' — 'quite' with gradable adjective means:",o:["Completely","Fairly/moderately","Both are the same","Absolutely"],a:1},
+{id:493,l:"expert",c:"Adverbs",q:"'<u>Yet</u> she persisted.' — 'Yet' here functions as:",o:["Conjunction","Adverb (meaning nevertheless)","Preposition","Interjection"],a:1},
+{id:494,l:"expert",c:"Adverbs",q:"Adverbs that comment on the truth of the whole sentence are called:",o:["Degree adverbs","Modal/Stance adverbs","Manner adverbs","Focus adverbs"],a:1},
+{id:495,l:"expert",c:"Adverbs",q:"'She <u>still</u> hasn't finished.' — 'Still' with a negative expresses:",o:["Continuation of positive state","Surprise that something hasn't happened yet","Contrast","Duration"],a:1},
+{id:496,l:"expert",c:"Adverbs",q:"'He is <u>downright</u> rude.' — 'downright' is a/an:",o:["Degree adverb (intensifier)","Manner adverb","Stance adverb","Frequency adverb"],a:0},
+{id:497,l:"expert",c:"Adverbs",q:"'He drove as fast as he <u>possibly</u> could.' — 'possibly' modifies:",o:["fast","he","could","as he could"],a:2},
+{id:498,l:"expert",c:"Adverbs",q:"A CONJUNCTIVE adverb connects two independent clauses. Which is one?",o:["Although","Because","Furthermore","Unless"],a:2},
+{id:499,l:"expert",c:"Adverbs",q:"'She is <u>enough</u> tall to reach the shelf.' — Error:",o:["enough tall — 'tall enough' is correct (adverb after adjective)","to reach","the shelf","No error"],a:0},
+{id:500,l:"expert",c:"Adverbs",q:"'He spoke <u>very fast</u>.' — Can 'very' modify an adverb of manner?",o:["Never","Yes — 'very' can intensify adverbs of manner","Only with adjectives","Only in formal writing"],a:1},
+];
+
+// ══════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════
+let EQ=[], UA=[], SK=[], VIS=[], curQ=0, timerInt=null, timeLeft=1800, totalTime=1800, negMark=0.25;
+const TOPICS = [...new Set(QB.map(q=>q.c))];
+
+// Populate topic pills
+(function(){
+  const tw = document.getElementById('topicsList');
+  TOPICS.forEach(t=>{
+    const p=document.createElement('span');
+    p.className='topic-pill'; p.textContent=t;
+    tw.appendChild(p);
+  });
+})();
+
+// Neg label update
+document.getElementById('negSel').addEventListener('change',function(){
+  const v=parseFloat(this.value);
+  document.getElementById('negLabel').textContent = v===0 ? '0 (None)' : `−${v===0.25?'¼':'½'} Mark`;
+});
+
+// ── START ──────────────────────────────────────────────
+document.getElementById('startBtn').addEventListener('click', startExam);
+function startExam(){
+  const diff = document.getElementById('diffSel').value;
+  const topic = document.getElementById('topicSel').value;
+  negMark = parseFloat(document.getElementById('negSel').value);
+  totalTime = timeLeft = parseInt(document.getElementById('timeSel').value);
+
+  let pool = QB;
+  if(diff!=='all') pool = pool.filter(q=>q.l===diff);
+  if(topic!=='all') pool = pool.filter(q=>q.c===topic);
+
+  if(pool.length < 20){
+    showToast(`Only ${pool.length} questions available for this combination. Showing all.`);
+    if(pool.length===0){showToast('No questions! Please change filters.');return;}
+  }
+
+  EQ = shuffle(pool).slice(0, Math.min(20, pool.length));
+  UA = new Array(EQ.length).fill(-1);
+  SK = new Array(EQ.length).fill(false);
+  VIS = new Array(EQ.length).fill(false);
+  VIS[0]=true; curQ=0;
+
+  buildPalette();
+  renderQ();
+  startTimer();
+  showScreen('examScreen');
+  document.getElementById('timerDisplay').textContent = fmtTime(timeLeft);
+}
+
+// ── SCREEN ─────────────────────────────────────────────
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ── TIMER ─────────────────────────────────────────────
+function startTimer(){
+  clearInterval(timerInt);
+  timerInt = setInterval(()=>{
+    timeLeft--;
+    const el=document.getElementById('timerDisplay');
+    el.textContent=fmtTime(timeLeft);
+    el.className = timeLeft<=60?'danger':timeLeft<=300?'warn':'';
+    if(timeLeft<=0){clearInterval(timerInt);submitExam();}
+  },1000);
+}
+function fmtTime(s){
+  return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+}
+
+// ── PALETTE ────────────────────────────────────────────
+function buildPalette(){
+  ['paletteGrid','mobPaletteGrid'].forEach(id=>{
+    const g=document.getElementById(id); g.innerHTML='';
+    EQ.forEach((_,i)=>{
+      const b=document.createElement('button');
+      b.className='pq'; b.textContent=i+1;
+      b.onclick=(()=>{const x=i;return()=>{goTo(x);closeMob();}})();
+      g.appendChild(b);
+    });
+  });
+  syncPalette();
+}
+function syncPalette(){
+  const n=EQ.length;
+  ['paletteGrid','mobPaletteGrid'].forEach(id=>{
+    const btns=document.getElementById(id).querySelectorAll('.pq');
+    btns.forEach((b,i)=>{
+      b.className='pq';
+      if(i===curQ) b.classList.add('cur');
+      else if(UA[i]!==-1) b.classList.add('ans');
+      else if(SK[i]) b.classList.add('skip');
+    });
+  });
+  const answered=UA.filter(a=>a!==-1).length;
+  const skipped=SK.filter(Boolean).length;
+  document.getElementById('ssAns').textContent=answered;
+  document.getElementById('ssSkip').textContent=skipped;
+  document.getElementById('ssNot').textContent=VIS.filter(v=>!v).length;
+  document.getElementById('ssRem').textContent=n-answered;
+  document.getElementById('ncQ').textContent=`${curQ+1}/${n}`;
+  document.getElementById('progFill').style.width=(answered/n*100)+'%';
+  document.getElementById('progLabel').textContent=`${answered} / ${n} answered`;
+  // Live score
+  let sc=0,cor=0,wr=0;
+  UA.forEach((a,i)=>{
+    if(a===-1)return;
+    if(a===EQ[i].a){sc++;cor++;}else{sc-=negMark;wr++;}
+  });
+  document.getElementById('ncScore').textContent=sc.toFixed(2);
+  document.getElementById('ncCorrect').textContent=cor;
+  document.getElementById('ncWrong').textContent=wr;
+}
+
+// ── RENDER QUESTION ────────────────────────────────────
+function renderQ(){
+  const q=EQ[curQ], n=EQ.length;
+  document.getElementById('qNum').textContent=`Question ${curQ+1} of ${n}`;
+  document.getElementById('qCat').textContent=q.c;
+  const badge=document.getElementById('qBadge');
+  badge.textContent=q.l.toUpperCase();
+  badge.className='q-badge qb-'+q.l;
+  document.getElementById('qText').innerHTML=q.q;
+  const ol=document.getElementById('optsList'); ol.innerHTML='';
+  ['A','B','C','D'].forEach((ltr,i)=>{
+    if(i>=q.o.length)return;
+    const btn=document.createElement('button');
+    btn.className='opt'+(UA[curQ]===i?' sel':'');
+    btn.innerHTML=`<span class="opt-key">${ltr}</span><span class="opt-text">${q.o[i]}</span>`;
+    btn.onclick=()=>selectOpt(i);
+    ol.appendChild(btn);
+  });
+  document.getElementById('prevBtn').disabled=(curQ===0);
+  document.getElementById('nextBtn').textContent=curQ===n-1?'Review →':'Next →';
+  syncPalette();
+}
+function selectOpt(i){
+  UA[curQ]=i; SK[curQ]=false;
+  renderQ();
+}
+
+// ── NAV ────────────────────────────────────────────────
+function nav(d){
+  const next=curQ+d;
+  if(next<0||next>=EQ.length)return;
+  curQ=next; VIS[curQ]=true; renderQ();
+}
+function goTo(i){ curQ=i; VIS[i]=true; renderQ(); }
+function skipQ(){ SK[curQ]=true; UA[curQ]=-1; nav(1); }
+
+// ── SUBMIT ─────────────────────────────────────────────
+function openSubmitModal(){
+  const un=UA.filter(a=>a===-1).length;
+  document.getElementById('modalMsg').textContent=
+    un>0?`You have ${un} unanswered question(s). Submit anyway?`:'Submit your test now?';
+  document.getElementById('submitModal').classList.add('open');
+}
+function closeModal(){document.getElementById('submitModal').classList.remove('open');}
+
+function submitExam(){
+  closeModal();clearInterval(timerInt);
+  buildResults();showScreen('resultsScreen');
+}
+
+// ── RESULTS ────────────────────────────────────────────
+function buildResults(){
+  const n=EQ.length;
+  let sc=0,cor=0,wr=0,sk=0;
+  UA.forEach((a,i)=>{
+    if(a===-1){sk++;return;}
+    if(a===EQ[i].a){sc++;cor++;}else{sc-=negMark;wr++;}
+  });
+  const acc=cor+wr>0?Math.round(cor/(cor+wr)*100):0;
+  const pct=Math.max(0,Math.min(100,(sc/n)*100));
+  const timeUsed=totalTime-timeLeft;
+
+  let grade,gcol,gtitle,gsub;
+  if(pct>=90){grade='A+';gcol='#2dd4bf';gtitle='Outstanding! 🏆';gsub='You have mastered English Grammar!';}
+  else if(pct>=75){grade='A';gcol='#34d399';gtitle='Excellent! 🌟';gsub='Strong command of grammar concepts.';}
+  else if(pct>=60){grade='B';gcol='#38bdf8';gtitle='Very Good! 👍';gsub='Good understanding with minor gaps.';}
+  else if(pct>=45){grade='C';gcol='#fbbf24';gtitle='Good 📚';gsub='Passed! Focus on weak areas to improve.';}
+  else if(pct>=30){grade='D';gcol='#fb923c';gtitle='Below Average';gsub='Review fundamentals and practise daily.';}
+  else{grade='F';gcol='#f43f5e';gtitle='Needs Improvement';gsub='Consistent practice will make a big difference!';}
+
+  document.getElementById('resTitle').textContent=gtitle;
+  document.getElementById('resSub').textContent=gsub;
+  document.getElementById('riScore').textContent=sc.toFixed(2);
+  document.getElementById('riScore').style.color=gcol;
+  document.getElementById('riTotal').textContent=`/${n}`;
+  document.getElementById('riGrade').textContent=grade;
+  document.getElementById('riGrade').style.color=gcol;
+  document.getElementById('sdTitle').textContent=`Grade ${grade} — ${gtitle}`;
+  document.getElementById('sdSub').textContent=`You scored ${sc.toFixed(2)} out of ${n} marks`;
+  document.getElementById('sdCorrect').textContent=cor;
+  document.getElementById('sdWrong').textContent=wr;
+  document.getElementById('sdSkipped').textContent=sk;
+  document.getElementById('sdAccuracy').textContent=acc+'%';
+  document.getElementById('sdTime').textContent=fmtTime(timeUsed);
+  document.getElementById('anC').textContent=cor;
+  document.getElementById('anW').textContent=wr;
+  document.getElementById('anS').textContent=sk;
+  document.getElementById('anA').textContent=acc+'%';
+
+  // Ring
+  const ring=document.getElementById('srFill');
+  const circ=2*Math.PI*65;
+  ring.style.strokeDasharray=circ;
+  ring.style.strokeDashoffset=circ;
+  ring.style.stroke=gcol;
+  setTimeout(()=>{ ring.style.strokeDashoffset=circ-(pct/100)*circ; },300);
+
+  // Category chart
+  const cats={};
+  EQ.forEach((q,i)=>{
+    if(!cats[q.c])cats[q.c]={c:0,w:0,t:0};
+    cats[q.c].t++;
+    if(UA[i]===-1)return;
+    if(UA[i]===q.a)cats[q.c].c++;else cats[q.c].w++;
+  });
+  const cc=document.getElementById('catChart'); cc.innerHTML='';
+  Object.entries(cats).forEach(([cat,d])=>{
+    const p=d.t?Math.round(d.c/d.t*100):0;
+    const col=p>=70?'#34d399':p>=40?'#fbbf24':'#f43f5e';
+    cc.innerHTML+=`<div class="bar-item"><div class="bi-label">${cat}</div><div class="bi-track"><div class="bi-fill" style="width:0%;background:${col}" data-w="${p}%"></div></div><div class="bi-val" style="color:${col}">${p}%</div></div>`;
+  });
+
+  // Difficulty chart
+  const diffs={basic:{c:0,t:0,col:'#34d399'},intermediate:{c:0,t:0,col:'#fbbf24'},advanced:{c:0,t:0,col:'#fb923c'},expert:{c:0,t:0,col:'#f43f5e'}};
+  EQ.forEach((q,i)=>{
+    if(!diffs[q.l])return;
+    diffs[q.l].t++;
+    if(UA[i]!==-1&&UA[i]===q.a)diffs[q.l].c++;
+  });
+  const dc=document.getElementById('diffChart'); dc.innerHTML='';
+  Object.entries(diffs).filter(([,d])=>d.t>0).forEach(([lv,d])=>{
+    const p=Math.round(d.c/d.t*100);
+    dc.innerHTML+=`<div class="bar-item"><div class="bi-label" style="text-transform:capitalize">${lv}</div><div class="bi-track"><div class="bi-fill" style="width:0%;background:${d.col}" data-w="${p}%"></div></div><div class="bi-val" style="color:${d.col}">${p}%</div></div>`;
+  });
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bi-fill').forEach(b=>{ b.style.width=b.dataset.w; });
+  },400);
+
+  // Review table
+  buildReview('all');
+}
+
+let allRows=[];
+function buildReview(filter){
+  allRows=[];
+  EQ.forEach((q,i)=>{
+    const ua=UA[i];
+    let status,scls;
+    if(ua===-1){status='⚡ Skipped';scls='rv-skip';}
+    else if(ua===q.a){status='✓ Correct';scls='rv-correct';}
+    else{status='✗ Wrong';scls='rv-wrong';}
+    allRows.push({i,q,ua,status,scls});
+  });
+  filterReview(filter);
+}
+function filterReview(f,btn){
+  if(btn){
+    document.querySelectorAll('.rf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const tbody=document.getElementById('reviewBody'); tbody.innerHTML='';
+  const rows=f==='all'?allRows:allRows.filter(r=>
+    f==='correct'?r.ua===r.q.a:f==='wrong'?(r.ua!==-1&&r.ua!==r.q.a):r.ua===-1
+  );
+  rows.forEach(({i,q,ua,status,scls})=>{
+    const tr=document.createElement('tr');
+    const uaText=ua!==-1?`<span class="${ua===q.a?'rv-ans-correct':'rv-ans-wrong'}">${q.o[ua]}</span>`:'<span class="rv-skip">—</span>';
+    tr.innerHTML=`<td>${i+1}</td><td style="max-width:200px;font-size:.78rem;line-height:1.4">${q.q.replace(/<[^>]+>/g,'').substring(0,80)}${q.q.length>80?'...':''}</td><td style="font-size:.78rem">${uaText}</td><td style="font-size:.78rem;color:var(--emerald)">${q.o[q.a]}</td><td class="${scls}" style="font-size:.78rem;white-space:nowrap">${status}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── UTIL ───────────────────────────────────────────────
+function shuffle(a){let b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function goHome(){showScreen('homeScreen');}
+function retryExam(){showScreen('homeScreen');}
+function openMob(){document.getElementById('mobOverlay').classList.add('open');document.getElementById('mobDrawer').classList.add('open');}
+function closeMob(){document.getElementById('mobOverlay').classList.remove('open');document.getElementById('mobDrawer').classList.remove('open');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+</script>
+</body>
+</html>
